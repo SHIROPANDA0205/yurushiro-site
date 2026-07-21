@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: light;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid #ab8a56;
+  outline-offset: 2px;
+}
+
+/*
+ * 一部のプレビュー環境（OS/ブラウザの自動配色調整）が、短いテキストや
+ * ラベル的な要素の文字色を意図せず反転させることがあるため、
+ * サイトの基本テキストカラーは常にこの色で固定する。
+ */
+.text-ink {
+  color: #1e1b16 !important;
+}
+.text-ink-soft {
+  color: #6f6a5e !important;
+}
+
+/*
+ * ゴールドの主要ボタンにあしらう、光が斜めに走る微細なシャインアニメーション。
+ * ホバー時に一度だけ左から右へ光が通過し、上質な質感を演出する。
+ */
+.btn-shine {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(
+    115deg,
+    transparent,
+    rgba(255, 255, 255, 0.55),
+    transparent
+  );
+  transform: skewX(-20deg);
+  transition: left 0.65s ease;
+  pointer-events: none;
+}
+.btn-shine:hover::after,
+.btn-shine:focus-visible::after {
+  left: 125%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-shine::after {
+    transition: none;
+    display: none;
+  }
+}
