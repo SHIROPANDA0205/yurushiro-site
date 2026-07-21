@@ -49,6 +49,8 @@ export const works: Work[] = [
       "Claude Codeを活用した開発フローの構築と、AIとの協働による効率的なWeb開発の実践例です。",
     tech: ["Claude Code", "Next.js", "TypeScript"],
     role: "開発・プロンプト設計",
+    thumbnailSrc: "/images/works-claude-code.jpg",
+    thumbnailAlt: "Claude Codeを活用したWeb開発のイメージ",
   },
   {
     id: "coming-soon",
