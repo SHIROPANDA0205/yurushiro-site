@@ -1,29 +1,11 @@
 /**
  * 問い合わせフォームの送信処理。
+ * Formspree 経由で yurushiro.contact@gmail.com に届きます。
  *
- * 現在は仮実装（1秒待って成功を返すだけ）です。
- * 実際に送信できるようにするには、この関数の中身を
- * 利用するサービスに合わせて書き換えてください。
- *
- * --- Formspree の例 ---
- * const res = await fetch("https://formspree.io/f/【フォームID】", {
- *   method: "POST",
- *   headers: { "Content-Type": "application/json", Accept: "application/json" },
- *   body: JSON.stringify(data),
- * });
- * return { ok: res.ok };
- *
- * --- Google Apps Script の例 ---
- * const res = await fetch("【GASのWebアプリURL】", {
- *   method: "POST",
- *   body: JSON.stringify(data),
- * });
- * return { ok: res.ok };
- *
- * --- Resend の例 ---
- * Resend はAPIキーを使うため、Next.js の Route Handler
- * （src/app/api/contact/route.ts）を作成し、サーバー側から送信してください。
- * このファイルからは fetch("/api/contact", ...) を呼び出す形になります。
+ * 設定:
+ * 1. https://formspree.io でアカウント作成（受信メールで登録）
+ * 2. New Form を作成し、Form ID（例: xyzabcde）を取得
+ * 3. .env.local と Vercel の環境変数に NEXT_PUBLIC_FORMSPREE_ID を設定
  */
 
 export type ContactFormData = {
@@ -37,8 +19,34 @@ export type ContactFormData = {
 export async function submitContact(
   data: ContactFormData
 ): Promise<{ ok: boolean }> {
-  // 仮実装: 送信内容をコンソールに出力し、1秒後に成功を返す
-  console.log("Contact form submitted (mock):", data);
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-  return { ok: true };
+  const formId = process.env.NEXT_PUBLIC_FORMSPREE_ID;
+
+  if (!formId) {
+    console.error("NEXT_PUBLIC_FORMSPREE_ID が未設定です。");
+    return { ok: false };
+  }
+
+  try {
+    const res = await fetch(`https://formspree.io/f/${formId}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        name: data.name,
+        email: data.email,
+        company: data.company || "（未記入）",
+        inquiryType: data.inquiryType,
+        message: data.message,
+        _replyto: data.email,
+        _subject: `【ゆるしろ】お問い合わせ: ${data.inquiryType} / ${data.name}`,
+      }),
+    });
+
+    return { ok: res.ok };
+  } catch (error) {
+    console.error("Contact form submission failed:", error);
+    return { ok: false };
+  }
 }
