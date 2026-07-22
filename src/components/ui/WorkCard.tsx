@@ -47,6 +47,11 @@ export default function WorkCard({ work, index }: { work: Work; index: number })
       <div className="flex flex-1 flex-col p-6">
         <span className="font-serif-en text-sm italic text-gold">{number}</span>
         <h3 className="mt-1 font-serif text-lg font-bold tracking-[0.04em] text-ink">{work.title}</h3>
+        {work.withClaudeCode && (
+          <p className="mt-2 inline-flex self-start rounded-full border border-gold/40 bg-gold/10 px-3 py-1 font-serif text-xs font-medium tracking-[0.06em] text-gold">
+            Claude Codeで制作
+          </p>
+        )}
         <p className="mt-2 flex-1 font-serif text-sm leading-relaxed text-ink-soft">
           {work.description}
         </p>
