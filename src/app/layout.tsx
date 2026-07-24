@@ -9,6 +9,7 @@ import {
 import ScrollProgress from "@/components/ui/ScrollProgress";
 import CursorFollower from "@/components/ui/CursorFollower";
 import XFloatingButton from "@/components/ui/XFloatingButton";
+import JsonLd from "@/components/seo/JsonLd";
 import { site } from "@/data/site";
 import "./globals.css";
 
@@ -52,8 +53,18 @@ const serifEn = Cormorant_Garamond({
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: site.title,
+  title: {
+    default: site.title,
+    template: `%s｜${site.name}`,
+  },
   description: site.description,
+  keywords: [...site.keywords],
+  authors: [{ name: site.fullName, url: site.url }],
+  creator: site.fullName,
+  publisher: site.fullName,
+  alternates: {
+    canonical: site.url,
+  },
   openGraph: {
     title: site.title,
     description: site.description,
@@ -61,15 +72,25 @@ export const metadata: Metadata = {
     siteName: site.fullName,
     locale: "ja_JP",
     type: "website",
-    // OGP画像は src/app/opengraph-image.tsx で動的に生成されます。
   },
   twitter: {
     card: "summary_large_image",
     title: site.title,
     description: site.description,
+    creator: site.twitterHandle,
+    site: site.twitterHandle,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
   // favicon: src/app/icon.svg が自動的に使用されます。
-  // 差し替える場合は src/app/icon.svg（または icon.png / favicon.ico）を置き換えてください。
 };
 
 export default function RootLayout({
@@ -95,6 +116,7 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-base font-body text-ink antialiased">
+        <JsonLd />
         <ScrollProgress />
         <CursorFollower />
         <XFloatingButton />

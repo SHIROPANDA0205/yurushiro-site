@@ -6,7 +6,7 @@ export const inquiryTypes: string[] = [
   "ホームページ制作",
   "Claude Code開発支援",
   "ChatGPT活用支援",
-  "Excel・業務効率化",
+  "IT副業の相談",
   "一緒に何か企画したい",
   "その他",
 ];
