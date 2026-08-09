@@ -28,7 +28,7 @@ export const profile = {
   photoSrc: null as string | null,
   photoAlt: "ゆるしろのプロフィール写真",
   items: [
-    { label: "活動名", value: "ゆるしろ" },
+    { label: "活動名", value: "ゆるしろ（ゆるしろAI）" },
     { label: "学歴", value: "早稲田大学大学院 修了" },
     { label: "年代", value: "20代後半" },
     { label: "職業", value: "ITエンジニア（IT副業も受付中）" },

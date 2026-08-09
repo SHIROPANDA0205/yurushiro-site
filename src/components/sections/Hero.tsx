@@ -76,7 +76,7 @@ export default function Hero() {
 
       {/* 検索・アクセシビリティ用（見た目はヒーロー画像のコピーを優先） */}
       <div className="sr-only">
-        <h1>ゆるしろ｜AI開発・Web制作・IT副業</h1>
+        <h1>ゆるしろAI｜AI開発・Web制作・IT副業</h1>
         <p>Stay Hungry, Stay Foolish. ハングリーであれ。愚かであれ。</p>
       </div>
 
