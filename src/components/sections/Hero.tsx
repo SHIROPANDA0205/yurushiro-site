@@ -74,10 +74,10 @@ export default function Hero() {
         />
       </div>
 
-      {/* 画像内テキストの代替（SEO・アクセシビリティ） */}
+      {/* 検索・アクセシビリティ用（見た目はヒーロー画像のコピーを優先） */}
       <div className="sr-only">
-        <h1>Stay Hungry, Stay Foolish.</h1>
-        <p>ハングリーであれ。愚かであれ。</p>
+        <h1>ゆるしろ｜AI開発・Web制作・IT副業</h1>
+        <p>Stay Hungry, Stay Foolish. ハングリーであれ。愚かであれ。</p>
       </div>
 
       {/* コンテンツ（画像の下の暗色帯に配置し、写真と重ならないようにする） */}
