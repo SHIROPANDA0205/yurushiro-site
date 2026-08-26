@@ -8,6 +8,7 @@ import Services from "@/components/sections/Services";
 import Works from "@/components/sections/Works";
 import FinalMessage from "@/components/sections/FinalMessage";
 import Contact from "@/components/sections/Contact";
+import BusinessInfo from "@/components/sections/BusinessInfo";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
         <Works />
         <FinalMessage />
         <Contact />
+        <BusinessInfo />
       </main>
       <Footer />
     </>
