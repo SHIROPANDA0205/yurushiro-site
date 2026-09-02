@@ -28,7 +28,7 @@ export const works: Work[] = [
     id: "portfolio",
     title: "個人ポートフォリオサイト",
     description:
-      "Claude Codeで制作。人柄が伝わることをコンセプトにした、このポートフォリオサイトです。企画からデザイン・実装まで、Claude Codeと協働してスピーディーに仕上げました。",
+      "人柄が伝わることをコンセプトにした、このポートフォリオサイトです。企画からデザイン・実装まで、Claude Codeと協働してスピーディーに仕上げました。",
     tech: ["Claude Code", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
     role: "企画・デザイン・実装",
     withClaudeCode: true,
