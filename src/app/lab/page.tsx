@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import PageHeader from "@/components/layout/PageHeader";
 import Reveal from "@/components/ui/Reveal";
-import Tag from "@/components/ui/Tag";
 import SectionTitle from "@/components/ui/SectionTitle";
 import CTA from "@/components/sections/CTA";
 import LearningList from "@/components/sections/LearningList";
-import { githubAccount, repositories } from "@/data/lab";
+import RepositoryList from "@/components/sections/RepositoryList";
+import { githubAccount } from "@/data/lab";
 import { certificationCount, profile } from "@/data/profile";
 
 export const metadata: Metadata = {
@@ -27,89 +26,20 @@ export default function LabPage() {
         crumbs={[{ label: "LAB" }]}
       />
 
-      {/* Udemyでの学習 */}
+      {/* GitHub */}
       <section
         id="github"
         aria-label="GitHubのポートフォリオ"
         className="scroll-mt-24 py-16 sm:py-20"
       >
         <div className="mx-auto max-w-content px-4 sm:px-6">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <SectionTitle
-              eyebrow="GITHUB"
-              title="公開しているポートフォリオ"
-              lead="つくったものはできるかぎり公開しています。"
-            />
-          </div>
+          <SectionTitle
+            eyebrow="GITHUB"
+            title="公開しているポートフォリオ"
+            lead="つくったものはできるかぎり公開しています。"
+          />
 
-          <ul className="grid gap-5 sm:grid-cols-2">
-            {repositories.map((repo, index) => (
-              <li key={repo.name}>
-                <Reveal delay={index * 0.06} className="h-full">
-                  <a
-                    href={repo.url ?? `${githubAccount}/${repo.name}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex h-full flex-col overflow-hidden rounded-card border border-line bg-bg-surface transition-colors duration-300 hover:border-line-strong"
-                  >
-                    {/* 画面。自分の作品なので実物を載せてよい */}
-                    <div className="relative aspect-[16/10] overflow-hidden bg-bg-raised">
-                      {repo.thumbnail ? (
-                        <Image
-                          src={repo.thumbnail}
-                          alt={repo.thumbnailAlt ?? `${repo.title}の画面`}
-                          fill
-                          sizes="(min-width: 640px) 50vw, 100vw"
-                          className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                        />
-                      ) : (
-                        <div
-                          aria-hidden="true"
-                          className="absolute inset-0 grid-lines opacity-60"
-                          style={{
-                            background:
-                              "linear-gradient(135deg, rgba(59,111,224,0.14), rgba(139,79,224,0.08) 50%, rgba(14,165,196,0.10))",
-                          }}
-                        />
-                      )}
-                    </div>
-
-                    <div className="flex flex-1 flex-col p-5">
-                      <h3 className="flex items-start justify-between gap-3 font-display text-base font-bold leading-snug text-fg">
-                        <span>{repo.title}</span>
-                        <ArrowUpRight
-                          aria-hidden="true"
-                          className="mt-0.5 h-4 w-4 shrink-0 text-fg-dim transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand-blue"
-                        />
-                      </h3>
-
-                      <p className="mt-1.5 font-mono text-[11px] text-fg-dim">
-                        {repo.name}
-                      </p>
-
-                      <p className="mt-3 text-sm leading-relaxed text-fg-muted">
-                        {repo.description}
-                      </p>
-
-                      {repo.reason && (
-                        <p className="mt-4 border-l-2 border-brand-purple/40 pl-4 text-sm leading-relaxed text-fg-dim">
-                          {repo.reason}
-                        </p>
-                      )}
-
-                      <ul className="mt-5 flex flex-wrap gap-1.5">
-                        {repo.tech.map((tech) => (
-                          <li key={tech}>
-                            <Tag>{tech}</Tag>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </a>
-                </Reveal>
-              </li>
-            ))}
-          </ul>
+          <RepositoryList />
 
           <Reveal delay={0.1} className="mt-8">
             <a
@@ -168,7 +98,7 @@ export default function LabPage() {
         </div>
       </section>
 
-      {/* GitHub */}
+      {/* Udemyでの学習 */}
       <section
         id="learning"
         aria-label="Udemyでの学習"
