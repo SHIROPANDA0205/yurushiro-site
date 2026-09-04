@@ -24,7 +24,7 @@ export default function ButtonLink({
   className = "",
 }: ButtonLinkProps) {
   const base =
-    "btn-shine group inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-sm font-bold transition-all duration-300 hover:-translate-y-0.5";
+    "btn-shine group inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full px-7 py-3.5 text-sm font-bold transition-all duration-300 hover:-translate-y-0.5";
 
   const variantClass =
     variant === "primary"

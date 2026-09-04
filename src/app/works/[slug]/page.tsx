@@ -2,14 +2,16 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import PageHeader from "@/components/layout/PageHeader";
 import Reveal from "@/components/ui/Reveal";
 import Tag from "@/components/ui/Tag";
 import WorkCard from "@/components/ui/WorkCard";
 import CTA from "@/components/sections/CTA";
-import { workCategoryLabels, works } from "@/data/works";
+import ReadableText from "@/components/ui/ReadableText";
+import { workCategoryLabels, works, type Work } from "@/data/works";
 import { dayJobWorks } from "@/data/dayjob";
+import { plainText } from "@/lib/readableText";
 
 /**
  * 受託案件（works.ts）と本業の実績（dayjob.ts）は、機密の扱いが違うので
@@ -29,16 +31,42 @@ export function generateMetadata({ params }: Params): Metadata {
   if (!work) return {};
 
   return {
-    title: work.title,
-    description: work.summary,
+    title: plainText(work.title),
+    description: plainText(work.summary),
     alternates: { canonical: `/works/${work.slug}` },
     openGraph: {
-      title: work.title,
-      description: work.summary,
+      title: plainText(work.title),
+      description: plainText(work.summary),
       type: "article",
       images: work.thumbnail ? [{ url: work.thumbnail }] : undefined,
     },
   };
+}
+
+/** 詳細から一覧の該当セクションへ戻す */
+function worksBack(work: Work) {
+  if (work.category === "mainjob") {
+    return { href: "/works#main-job", label: "本業での実績に戻る" };
+  }
+  if (work.category === "client") {
+    return { href: "/works#client", label: "AI LINK CRAFT での実績に戻る" };
+  }
+  return { href: "/works", label: "実績一覧に戻る" };
+}
+
+function BackToWorks({ href, label }: { href: string; label: string }) {
+  return (
+    <Link
+      href={href}
+      className="group inline-flex items-center gap-1.5 text-sm font-bold text-fg-muted transition-colors hover:text-fg"
+    >
+      <ArrowLeft
+        aria-hidden="true"
+        className="h-4 w-4 transition-transform duration-300 group-hover:-translate-x-0.5"
+      />
+      {label}
+    </Link>
+  );
 }
 
 /** 本文中の見出し付きブロック */
@@ -77,7 +105,7 @@ function List({ items }: { items: string[] }) {
             aria-hidden="true"
             className="mt-[10px] h-1.5 w-1.5 shrink-0 rounded-full bg-brand-blue"
           />
-          {item}
+          <ReadableText text={item} maxChars={24} />
         </li>
       ))}
     </ul>
@@ -89,6 +117,7 @@ export default function WorkDetailPage({ params }: Params) {
   if (!work) notFound();
 
   const others = allWorks.filter((item) => item.slug !== work.slug).slice(0, 3);
+  const back = worksBack(work);
 
   return (
     <>
@@ -99,17 +128,21 @@ export default function WorkDetailPage({ params }: Params) {
         crumbs={[{ label: "WORKS", href: "/works" }, { label: work.title }]}
       />
 
-      <article className="mx-auto max-w-3xl px-4 py-14 sm:px-6 sm:py-20">
+      <article className="mx-auto max-w-5xl px-4 py-14 sm:px-6 sm:py-20">
+        <Reveal>
+          <BackToWorks href={back.href} label={back.label} />
+        </Reveal>
+
         {/* メイン画像 */}
         {work.thumbnail && (
-          <Reveal>
+          <Reveal className="mt-8">
             <div className="relative aspect-[16/9] overflow-hidden rounded-card border border-line bg-bg-surface">
               <Image
                 src={work.thumbnail}
                 alt={work.thumbnailAlt ?? `${work.title}の画面`}
                 fill
                 priority
-                sizes="(min-width: 768px) 768px, 100vw"
+                sizes="(min-width: 1024px) 1024px, 100vw"
                 className="object-cover"
               />
             </div>
@@ -120,7 +153,7 @@ export default function WorkDetailPage({ params }: Params) {
         <Reveal delay={0.06}>
           <dl className="mt-10 grid gap-px overflow-hidden rounded-card border border-line bg-fg/[0.06] sm:grid-cols-2">
             {work.period && (
-              <div className="bg-bg p-5">
+              <div className="min-w-0 bg-bg p-5">
                 <dt className="font-mono text-[11px] tracking-wide text-fg-dim">
                   期間
                 </dt>
@@ -128,7 +161,7 @@ export default function WorkDetailPage({ params }: Params) {
               </div>
             )}
             {work.client && (
-              <div className="bg-bg p-5">
+              <div className="min-w-0 bg-bg p-5">
                 <dt className="font-mono text-[11px] tracking-wide text-fg-dim">
                   クライアント
                 </dt>
@@ -136,7 +169,7 @@ export default function WorkDetailPage({ params }: Params) {
               </div>
             )}
             {work.scale && (
-              <div className="bg-bg p-5">
+              <div className="min-w-0 bg-bg p-5">
                 <dt className="font-mono text-[11px] tracking-wide text-fg-dim">
                   規模
                 </dt>
@@ -144,22 +177,22 @@ export default function WorkDetailPage({ params }: Params) {
               </div>
             )}
             {work.role.length > 0 && (
-              <div className="bg-bg p-5">
+              <div className="min-w-0 bg-bg p-5">
                 <dt className="font-mono text-[11px] tracking-wide text-fg-dim">
                   担当範囲
                 </dt>
-                <dd className="mt-2 text-sm text-fg">{work.role.join(" / ")}</dd>
+                <dd className="mt-2 text-sm leading-relaxed text-fg">{work.role.join(" / ")}</dd>
               </div>
             )}
             {work.tech.length > 0 && (
-              <div className="bg-bg p-5">
+              <div className="min-w-0 bg-bg p-5">
                 <dt className="font-mono text-[11px] tracking-wide text-fg-dim">
                   構成技術
                 </dt>
                 <dd className="mt-2">
                   <ul className="flex flex-wrap gap-1.5">
                     {work.tech.map((tech) => (
-                      <li key={tech}>
+                      <li key={tech} className="max-w-full">
                         <Tag>{tech}</Tag>
                       </li>
                     ))}
@@ -196,7 +229,7 @@ export default function WorkDetailPage({ params }: Params) {
           {work.background && (
             <Block label="BACKGROUND" title="背景">
               <p className="text-sm leading-relaxed text-fg-muted sm:text-base sm:leading-loose">
-                {work.background}
+                <ReadableText text={work.background} maxChars={24} />
               </p>
             </Block>
           )}
@@ -222,10 +255,10 @@ export default function WorkDetailPage({ params }: Params) {
                     className="rounded-card border border-line bg-bg-surface p-5 sm:p-6"
                   >
                     <h3 className="font-display text-base font-bold text-fg">
-                      {item.title}
+                      <ReadableText text={item.title} mode="phrases" />
                     </h3>
                     <p className="mt-3 text-sm leading-relaxed text-fg-muted">
-                      {item.body}
+                      <ReadableText text={item.body} maxChars={24} />
                     </p>
                   </li>
                 ))}
@@ -262,11 +295,15 @@ export default function WorkDetailPage({ params }: Params) {
           {work.learning && (
             <Block label="LEARNING" title="学び">
               <p className="text-sm leading-relaxed text-fg-muted sm:text-base sm:leading-loose">
-                {work.learning}
+                <ReadableText text={work.learning} maxChars={24} />
               </p>
             </Block>
           )}
         </div>
+
+        <Reveal className="mt-10">
+          <BackToWorks href={back.href} label={back.label} />
+        </Reveal>
 
         {/* 他の実績 */}
         {others.length > 0 && (

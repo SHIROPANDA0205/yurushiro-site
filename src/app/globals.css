@@ -10,10 +10,38 @@ html {
   scroll-behavior: smooth;
   color-scheme: light;
   background-color: #ffffff;
+  /* 句読点の直前で切れないようにする（日本語の禁則処理） */
+  line-break: strict;
 }
 
 body {
   overflow-x: hidden;
+  overflow-wrap: break-word;
+  /*
+   * Chromium 系では文節の切れ目で折り返す。
+   * 非対応ブラウザでは無視され、通常の折り返しになる。
+   */
+  word-break: auto-phrase;
+  /* 見出し以外の本文で、行末に1文字だけ残るような折り返しを避ける */
+  text-wrap: pretty;
+}
+
+/*
+ * 日本語の句を塊のまま折り返す。
+ * overflow-wrap を付けると、行末の狭い隙間に押し込まれて句の途中で切れる。
+ * @layer に入れると、レイヤー外の body の word-break に負ける。
+ */
+.ja-phrase {
+  display: inline-block;
+  word-break: keep-all;
+  line-break: strict;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
 }
 
 ::selection {
@@ -36,7 +64,6 @@ body {
 }
 
 @layer utilities {
-  /* ブランドのグラデーションを文字に流し込む */
   .grad-text {
     background-image: linear-gradient(100deg, #3b6fe0 0%, #8b4fe0 52%, #0ea5c4 100%);
     -webkit-background-clip: text;
@@ -111,6 +138,7 @@ body {
   position: relative;
   isolation: isolate;
   overflow: hidden;
+  white-space: nowrap;
 }
 .btn-shine::after {
   content: "";

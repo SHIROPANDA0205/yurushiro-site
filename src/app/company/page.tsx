@@ -18,7 +18,7 @@ export default function CompanyPage() {
       <PageHeader
         eyebrow="COMPANY"
         title="事業者情報"
-        lead="AI LINK CRAFT は、代表・ゆるしろが個人事業として運営する屋号です。どんな人間が、どういう考えでつくっているのかをまとめています。"
+        lead="AI LINK CRAFT は、代表・ゆるしろが個人事業として運営する屋号です。どんな人間が、どんな考えでつくっているのかをまとめています。"
         crumbs={[{ label: "COMPANY" }]}
       />
       <CompanyProfile />

@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import Reveal from "@/components/ui/Reveal";
+import ReadableText from "@/components/ui/ReadableText";
 import { viewportOnce } from "@/lib/motion";
 
 type SectionTitleProps = {
@@ -43,8 +44,8 @@ export default function SectionTitle({
         </p>
       </div>
 
-      <h2 className="mt-4 font-display text-[26px] font-bold leading-tight tracking-tight text-fg sm:text-4xl">
-        {title}
+      <h2 className="mt-4 max-w-4xl font-display text-[26px] font-bold leading-tight tracking-tight text-fg sm:text-4xl">
+        <ReadableText text={title} mode="phrases" />
       </h2>
 
       <motion.span
@@ -60,11 +61,11 @@ export default function SectionTitle({
 
       {lead && (
         <p
-          className={`mt-5 max-w-2xl text-sm leading-relaxed text-fg-muted sm:text-base sm:leading-loose ${
+          className={`mt-5 max-w-4xl text-sm leading-relaxed text-fg-muted sm:text-base sm:leading-loose ${
             isCenter ? "mx-auto" : ""
           }`}
         >
-          {lead}
+          <ReadableText text={lead} maxChars={26} />
         </p>
       )}
     </Reveal>

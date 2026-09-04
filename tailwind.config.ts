@@ -69,7 +69,7 @@ const config: Config = {
         card: "1rem",
       },
       maxWidth: {
-        content: "76rem",
+        content: "90rem",
       },
       keyframes: {
         /** Hero の背景グリッドをゆっくり流す */

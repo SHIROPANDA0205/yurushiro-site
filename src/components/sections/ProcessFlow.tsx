@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import Reveal from "@/components/ui/Reveal";
 import SectionTitle from "@/components/ui/SectionTitle";
+import ReadableText from "@/components/ui/ReadableText";
 import { processSteps } from "@/data/process";
 import { viewportOnce } from "@/lib/motion";
 
@@ -80,7 +81,7 @@ export default function ProcessFlow() {
                   </h3>
 
                   <p className="mt-3 text-sm leading-relaxed text-fg-muted">
-                    {step.summary}
+                    <ReadableText text={step.summary} maxChars={16} />
                   </p>
 
                   {step.duration && (

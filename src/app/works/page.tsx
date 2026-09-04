@@ -21,7 +21,7 @@ export default function WorksPage() {
       <PageHeader
         eyebrow="WORKS"
         title="実績"
-        lead="つくったものだけでなく、どういう状況で何を考えて選んだのかまで書いています。同じような課題をお持ちの方の参考になれば幸いです。"
+        lead="つくったものだけでなく、過程まで書いています。同じような課題の参考になれば幸いです。"
         crumbs={[{ label: "WORKS" }]}
       />
 
@@ -60,7 +60,7 @@ export default function WorksPage() {
           <SectionTitle
             eyebrow="MAIN JOB"
             title="本業での実績"
-            lead="大手IT企業のエンジニアとして担当している業務のうち、公開できる範囲のものです。"
+            lead="会社員として担当した業務のうち、公開できる範囲のものです。顧客名・システム名は記載していません。"
           />
 
           {dayJobWorks.length > 0 ? (
