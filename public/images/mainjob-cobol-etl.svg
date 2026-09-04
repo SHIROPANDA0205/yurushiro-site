@@ -1,87 +1,135 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-label="COBOLで構築された既存資産を、ETLによるデータ連携基盤へ移行することを表した図">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" role="img" aria-label="仕様書のないCOBOLのソースを読み解いて設計書を起こし、DataSpiderのETL処理として再構築した流れを表した図">
   <defs>
-    <linearGradient id="brand" x1="0" y1="1" x2="1" y2="0">
-      <stop offset="0%" stop-color="#3B6FE0"/>
-      <stop offset="55%" stop-color="#8B4FE0"/>
-      <stop offset="100%" stop-color="#0EA5C4"/>
-    </linearGradient>
-    <linearGradient id="arrow" x1="0" y1="0" x2="1" y2="0">
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0%" stop-color="#3B6FE0"/>
       <stop offset="100%" stop-color="#0EA5C4"/>
     </linearGradient>
-    <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#F7F8FB"/>
-      <stop offset="100%" stop-color="#FFFFFF"/>
+    <linearGradient id="paper" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F7F8FB"/>
     </linearGradient>
-    <pattern id="grid" width="44" height="44" patternUnits="userSpaceOnUse">
-      <path d="M44 0H0V44" fill="none" stroke="#0F1222" stroke-opacity="0.05" stroke-width="1"/>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#0F1222" stroke-opacity="0.04" stroke-width="1"/>
     </pattern>
-    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#8B4FE0" stop-opacity="0.16"/>
-      <stop offset="100%" stop-color="#8B4FE0" stop-opacity="0"/>
-    </radialGradient>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#0EA5C4"/>
+    </marker>
   </defs>
 
-  <!-- 地とうっすらした方眼 -->
-  <rect width="1600" height="900" fill="url(#fade)"/>
-  <rect width="1600" height="900" fill="url(#grid)"/>
-  <ellipse cx="1050" cy="440" rx="420" ry="330" fill="url(#glow)"/>
+  <rect width="1600" height="1000" fill="url(#paper)"/>
+  <rect width="1600" height="1000" fill="url(#grid)"/>
 
-  <!-- 左：老朽化したCOBOL資産 -->
-  <g>
-    <rect x="100" y="250" width="380" height="380" rx="28" fill="#0F1222"/>
-    <!-- コードらしさを出すための行 -->
-    <g fill="#FFFFFF" fill-opacity="0.16">
-      <rect x="144" y="298" width="190" height="12" rx="6"/>
-      <rect x="144" y="330" width="252" height="12" rx="6"/>
-      <rect x="144" y="362" width="150" height="12" rx="6"/>
-      <rect x="144" y="394" width="214" height="12" rx="6"/>
-    </g>
-    <text x="290" y="492" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="92" font-weight="800" fill="#FFFFFF" letter-spacing="2">COBOL</text>
-    <text x="290" y="552" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="34" fill="#8A90A6">老朽化した既存資産</text>
-  </g>
+  <!-- 見出し -->
+  <text x="80" y="100" font-family="system-ui, -apple-system, sans-serif" font-size="46" font-weight="800" fill="#0F1222">仕様書のないCOBOLを読み解き、ETLへ移す</text>
+  <rect x="80" y="128" width="120" height="5" rx="2.5" fill="url(#g1)"/>
 
-  <!-- 中央：移行の矢印 -->
+  <!-- ============ STEP 1 ============ -->
   <g>
-    <text x="700" y="392" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="38" font-weight="700" fill="#5A6178">移行</text>
-    <path d="M530 440 H840" stroke="url(#arrow)" stroke-width="12" stroke-linecap="round"/>
-    <path d="M842 440 L790 410 L790 470 Z" fill="#0EA5C4"/>
-  </g>
+    <text x="80" y="212" font-family="ui-monospace, monospace" font-size="24" font-weight="600" fill="#0EA5C4" letter-spacing="4">STEP 1</text>
+    <text x="80" y="262" font-family="system-ui, sans-serif" font-size="34" font-weight="700" fill="#0F1222">既存資産を読む</text>
 
-  <!-- 右：ETLによるデータ連携基盤 -->
-  <g>
-    <!-- 連携線 -->
-    <g stroke="#0EA5C4" stroke-opacity="0.55" stroke-width="4" fill="none">
-      <path d="M1180 440 C1220 440 1220 364 1260 364"/>
-      <path d="M1180 440 H1260"/>
-      <path d="M1180 440 C1220 440 1220 516 1260 516"/>
+    <!-- ソースコードの窓 -->
+    <rect x="80" y="300" width="400" height="330" rx="18" fill="#0F1222"/>
+    <rect x="80" y="300" width="400" height="52" rx="18" fill="#1E2530"/>
+    <rect x="80" y="336" width="400" height="16" fill="#1E2530"/>
+    <circle cx="112" cy="326" r="7" fill="#4A5461"/>
+    <circle cx="136" cy="326" r="7" fill="#4A5461"/>
+    <text x="164" y="335" font-family="ui-monospace, monospace" font-size="19" fill="#8A93A0">COBOL</text>
+
+    <g font-family="ui-monospace, monospace" font-size="19" fill="#7C8797">
+      <text x="108" y="400">IDENTIFICATION DIVISION.</text>
+      <text x="108" y="436">PROGRAM-ID.  SALES01.</text>
+      <text x="108" y="472">DATA DIVISION.</text>
+      <text x="108" y="508">WORKING-STORAGE SECTION.</text>
+      <text x="108" y="544" fill="#4E5765">01  WS-ITEM-CODE  PIC 9(06).</text>
+      <text x="108" y="580" fill="#3E4652">01  WS-ITEM-NAME  PIC X(20).</text>
     </g>
 
-    <!-- ETLのハブ -->
-    <rect x="920" y="310" width="260" height="260" rx="64" fill="url(#brand)"/>
-    <text x="1050" y="470" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="84" font-weight="800" fill="#FFFFFF" letter-spacing="4">ETL</text>
-
-    <!-- 連携先（一般名詞のみ。実在サービス名は使わない） -->
-    <g font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="30" fill="#0F1222">
-      <rect x="1260" y="330" width="240" height="68" rx="34" fill="#FFFFFF" stroke="#0F1222" stroke-opacity="0.1" stroke-width="2"/>
-      <text x="1380" y="374" text-anchor="middle">データベース</text>
-
-      <rect x="1260" y="406" width="240" height="68" rx="34" fill="#FFFFFF" stroke="#0F1222" stroke-opacity="0.1" stroke-width="2"/>
-      <text x="1380" y="450" text-anchor="middle">業務システム</text>
-
-      <rect x="1260" y="482" width="240" height="68" rx="34" fill="#FFFFFF" stroke="#0F1222" stroke-opacity="0.1" stroke-width="2"/>
-      <text x="1380" y="526" text-anchor="middle">ファイル</text>
+    <!-- 仕様書なしの印 -->
+    <g>
+      <rect x="80" y="662" width="400" height="72" rx="12" fill="#FFF4F2" stroke="#E8896B" stroke-width="2"/>
+      <circle cx="118" cy="698" r="15" fill="none" stroke="#D2603C" stroke-width="3"/>
+      <path d="M118 690 v10" stroke="#D2603C" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="118" cy="706" r="2" fill="#D2603C"/>
+      <text x="148" y="707" font-family="system-ui, sans-serif" font-size="26" font-weight="700" fill="#B44E19">仕様書は残っていない</text>
     </g>
   </g>
 
-  <!-- 下段：移行によって得られたこと -->
-  <g font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="34" fill="#5A6178" text-anchor="middle">
-    <path d="M100 700 H1500" stroke="#0F1222" stroke-opacity="0.08" stroke-width="2"/>
-    <circle cx="300" cy="783" r="7" fill="#3B6FE0"/>
-    <text x="340" y="795" text-anchor="start">老朽化の解消</text>
-    <circle cx="700" cy="783" r="7" fill="#8B4FE0"/>
-    <text x="740" y="795" text-anchor="start">属人化の解消</text>
-    <circle cx="1100" cy="783" r="7" fill="#0EA5C4"/>
-    <text x="1140" y="795" text-anchor="start">保守しやすい構成へ</text>
+  <!-- 矢印 1→2 -->
+  <path d="M510 470 H600" stroke="url(#g1)" stroke-width="7" stroke-linecap="round" marker-end="url(#ar)"/>
+
+  <!-- ============ STEP 2 ============ -->
+  <g>
+    <text x="640" y="212" font-family="ui-monospace, monospace" font-size="24" font-weight="600" fill="#0EA5C4" letter-spacing="4">STEP 2</text>
+    <text x="640" y="262" font-family="system-ui, sans-serif" font-size="34" font-weight="700" fill="#0F1222">仕様を起こす</text>
+
+    <rect x="640" y="300" width="320" height="330" rx="18" fill="#FFFFFF" stroke="#DDE2E8" stroke-width="2"/>
+    <!-- 設計書の行 -->
+    <g fill="#C7CDD6">
+      <rect x="684" y="352" width="180" height="14" rx="7"/>
+      <rect x="684" y="392" width="232" height="14" rx="7"/>
+      <rect x="684" y="432" width="150" height="14" rx="7"/>
+      <rect x="684" y="472" width="212" height="14" rx="7"/>
+      <rect x="684" y="512" width="120" height="14" rx="7"/>
+    </g>
+    <!-- 読み解いた印（チェック） -->
+    <g stroke="#0EA5C4" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <path d="M652 356 l12 12 l20 -24" transform="translate(-2,2)"/>
+      <path d="M652 396 l12 12 l20 -24" transform="translate(-2,2)"/>
+      <path d="M652 436 l12 12 l20 -24" transform="translate(-2,2)"/>
+    </g>
+    <text x="684" y="588" font-family="system-ui, sans-serif" font-size="26" font-weight="700" fill="#0F1222">詳細設計書</text>
+
+    <rect x="640" y="662" width="320" height="72" rx="12" fill="#EEF3FB" stroke="#C6D6F2" stroke-width="2"/>
+    <text x="672" y="707" font-family="system-ui, sans-serif" font-size="26" fill="#2E4E86">ソースから直接おこす</text>
+  </g>
+
+  <!-- 矢印 2→3 -->
+  <path d="M990 470 H1080" stroke="url(#g1)" stroke-width="7" stroke-linecap="round" marker-end="url(#ar)"/>
+
+  <!-- ============ STEP 3 ============ -->
+  <g>
+    <text x="1120" y="212" font-family="ui-monospace, monospace" font-size="24" font-weight="600" fill="#0EA5C4" letter-spacing="4">STEP 3</text>
+    <text x="1120" y="262" font-family="system-ui, sans-serif" font-size="34" font-weight="700" fill="#0F1222">ETLで組み直す</text>
+
+    <rect x="1120" y="300" width="400" height="330" rx="18" fill="#FFFFFF" stroke="#DDE2E8" stroke-width="2"/>
+    <rect x="1120" y="300" width="400" height="66" rx="18" fill="url(#g1)"/>
+    <rect x="1120" y="348" width="400" height="18" fill="url(#g1)"/>
+    <text x="1152" y="345" font-family="system-ui, sans-serif" font-size="28" font-weight="700" fill="#FFFFFF">DataSpider</text>
+
+    <!-- ETLの3工程 -->
+    <g>
+      <rect x="1152" y="400" width="336" height="62" rx="10" fill="#F4F7FC" stroke="#DDE2E8" stroke-width="2"/>
+      <circle cx="1188" cy="431" r="11" fill="#3B6FE0"/>
+      <text x="1216" y="441" font-family="system-ui, sans-serif" font-size="26" fill="#0F1222">抽出</text>
+
+      <rect x="1152" y="474" width="336" height="62" rx="10" fill="#F4F7FC" stroke="#DDE2E8" stroke-width="2"/>
+      <circle cx="1188" cy="505" r="11" fill="#8B4FE0"/>
+      <text x="1216" y="515" font-family="system-ui, sans-serif" font-size="26" fill="#0F1222">変換</text>
+      <text x="1300" y="515" font-family="ui-monospace, monospace" font-size="22" fill="#5A6178">SQL を組み込み</text>
+
+      <rect x="1152" y="548" width="336" height="62" rx="10" fill="#F4F7FC" stroke="#DDE2E8" stroke-width="2"/>
+      <circle cx="1188" cy="579" r="11" fill="#0EA5C4"/>
+      <text x="1216" y="589" font-family="system-ui, sans-serif" font-size="26" fill="#0F1222">ロード</text>
+    </g>
+
+    <rect x="1120" y="662" width="400" height="72" rx="12" fill="#E9F6F0" stroke="#A9DCC6" stroke-width="2"/>
+    <text x="1152" y="707" font-family="system-ui, sans-serif" font-size="26" fill="#1F6B4A">単体・結合テストまで担当</text>
+  </g>
+
+  <!-- 下段：規模と期間 -->
+  <line x1="80" y1="810" x2="1520" y2="810" stroke="#0F1222" stroke-opacity="0.09" stroke-width="2"/>
+  <g font-family="system-ui, sans-serif" fill="#5A6178">
+    <text x="80" y="878" font-family="ui-monospace, monospace" font-size="24" fill="#8A90A6">期間</text>
+    <text x="80" y="924" font-size="30" font-weight="700" fill="#0F1222">2023.08 – 2024.04</text>
+
+    <text x="480" y="878" font-family="ui-monospace, monospace" font-size="24" fill="#8A90A6">規模</text>
+    <text x="480" y="924" font-size="30" font-weight="700" fill="#0F1222">チーム8名</text>
+
+    <text x="880" y="878" font-family="ui-monospace, monospace" font-size="24" fill="#8A90A6">立場</text>
+    <text x="880" y="924" font-size="30" font-weight="700" fill="#0F1222">実装メンバー</text>
+
+    <text x="1240" y="878" font-family="ui-monospace, monospace" font-size="24" fill="#8A90A6">技術</text>
+    <text x="1240" y="924" font-size="30" font-weight="700" fill="#0F1222">COBOL / DataSpider</text>
   </g>
 </svg>

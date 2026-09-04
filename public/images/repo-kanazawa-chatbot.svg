@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" role="img" aria-label="観光ガイドをナレッジとして検索し、記述がある質問にだけ答え、無い質問には推測せず答えないよう設計したチャットボットの流れを表した図">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#3B6FE0"/>
+      <stop offset="100%" stop-color="#0EA5C4"/>
+    </linearGradient>
+    <linearGradient id="paper" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F7F8FB"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#0F1222" stroke-opacity="0.04" stroke-width="1"/>
+    </pattern>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#3B6FE0"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="1000" fill="url(#paper)"/>
+  <rect width="1600" height="1000" fill="url(#grid)"/>
+
+  <text x="80" y="118" font-family="system-ui, -apple-system, sans-serif" font-size="54" font-weight="800" fill="#0F1222">ナレッジにあることだけを答えさせる</text>
+  <rect x="80" y="150" width="130" height="6" rx="3" fill="url(#g1)"/>
+
+  <!-- ============ 上段：問い合わせの流れ ============ -->
+  <text x="80" y="248" font-family="ui-monospace, monospace" font-size="28" font-weight="600" fill="#0EA5C4" letter-spacing="4">FLOW</text>
+
+  <g>
+    <rect x="80" y="286" width="340" height="150" rx="18" fill="#FFFFFF" stroke="#DDE2E8" stroke-width="2"/>
+    <text x="250" y="352" text-anchor="middle" font-family="system-ui, sans-serif" font-size="28" fill="#8A90A6">観光客からの</text>
+    <text x="250" y="400" text-anchor="middle" font-family="system-ui, sans-serif" font-size="38" font-weight="700" fill="#0F1222">質問</text>
+
+    <path d="M446 361 H508" stroke="url(#g1)" stroke-width="8" stroke-linecap="round" marker-end="url(#ar)"/>
+
+    <rect x="540" y="286" width="420" height="150" rx="18" fill="#EEF3FB" stroke="#C6D6F2" stroke-width="3"/>
+    <text x="750" y="352" text-anchor="middle" font-family="system-ui, sans-serif" font-size="28" fill="#5A6178">観光ガイドをナレッジ化し</text>
+    <text x="750" y="400" text-anchor="middle" font-family="system-ui, sans-serif" font-size="36" font-weight="700" fill="#2E4E86">該当する記述を検索</text>
+
+    <path d="M986 361 H1048" stroke="url(#g1)" stroke-width="8" stroke-linecap="round" marker-end="url(#ar)"/>
+
+    <rect x="1080" y="286" width="440" height="150" rx="18" fill="#FFFFFF" stroke="#DDE2E8" stroke-width="2"/>
+    <text x="1300" y="352" text-anchor="middle" font-family="system-ui, sans-serif" font-size="28" fill="#8A90A6">見つかった記述だけを</text>
+    <text x="1300" y="400" text-anchor="middle" font-family="system-ui, sans-serif" font-size="36" font-weight="700" fill="#0F1222">回答の材料にする</text>
+  </g>
+
+  <!-- ============ 下段：答える／答えない ============ -->
+  <text x="80" y="562" font-family="ui-monospace, monospace" font-size="28" font-weight="600" fill="#0EA5C4" letter-spacing="4">GUARD</text>
+
+  <!-- 答える -->
+  <g>
+    <rect x="80" y="600" width="700" height="300" rx="20" fill="#FFFFFF" stroke="#A9DCC6" stroke-width="3"/>
+    <circle cx="146" cy="674" r="28" fill="#E9F6F0"/>
+    <path d="M133 674 L142 683 L159 664" stroke="#1F6B4A" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <text x="196" y="688" font-family="system-ui, sans-serif" font-size="38" font-weight="700" fill="#1F6B4A">ナレッジにある質問</text>
+    <g font-family="system-ui, sans-serif" font-size="30" fill="#0F1222">
+      <text x="136" y="778">営業時間・料金を案内する</text>
+      <text x="136" y="838">関連するスポットも合わせて提案する</text>
+    </g>
+  </g>
+
+  <!-- 答えない -->
+  <g>
+    <rect x="820" y="600" width="700" height="300" rx="20" fill="#FFFFFF" stroke="#E8B49B" stroke-width="3"/>
+    <circle cx="886" cy="674" r="28" fill="#FFF4F2"/>
+    <path d="M875 663 L897 685 M897 663 L875 685" stroke="#B44E19" stroke-width="7" stroke-linecap="round"/>
+    <text x="936" y="688" font-family="system-ui, sans-serif" font-size="38" font-weight="700" fill="#B44E19">ナレッジにない質問</text>
+    <g font-family="system-ui, sans-serif" font-size="30" fill="#0F1222">
+      <text x="876" y="778">推測で答えさせない</text>
+      <text x="876" y="838">わからないことは、わからないと返す</text>
+    </g>
+  </g>
+</svg>
