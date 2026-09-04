@@ -1,65 +1,77 @@
 import { site } from "@/data/site";
+import { business } from "@/data/business";
 import { profile } from "@/data/profile";
-import { xLink } from "@/data/socialLinks";
+import { activeSocialLinks } from "@/data/socialLinks";
+import { services } from "@/data/services";
 
 /**
  * Google向けの構造化データ（JSON-LD）。
- * Person / WebSite / ProfessionalService を埋め込み、
- * 「ゆるしろ」「早稲田」「IT副業」などの関連を明示します。
+ *
+ * 事業主体は AI LINK CRAFT（ProfessionalService）、
+ * 代表のゆるしろ（Person）はその提供者として関連づけています。
  */
 export default function JsonLd() {
-  const sameAs = [xLink?.url].filter(Boolean) as string[];
+  const sameAs = activeSocialLinks.map((link) => link.url);
 
   const graph = [
     {
       "@type": "WebSite",
       "@id": `${site.url}/#website`,
       url: site.url,
-      name: site.fullName,
+      name: site.name,
       alternateName: [...site.aliases],
       description: site.description,
       inLanguage: "ja-JP",
-      publisher: { "@id": `${site.url}/#person` },
+      publisher: { "@id": `${site.url}/#organization` },
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": `${site.url}/#organization`,
+      name: business.tradeName,
+      alternateName: [...site.aliases],
+      url: site.url,
+      description: site.description,
+      slogan: site.tagline,
+      areaServed: "JP",
+      availableLanguage: "Japanese",
+      founder: { "@id": `${site.url}/#person` },
+      foundingDate: "2026-08-01",
+      knowsAbout: [
+        "AI活用",
+        "業務自動化",
+        "Web制作",
+        "業務効率化ツール開発",
+        "ローコード開発",
+      ],
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "サービス",
+        itemListElement: services.map((service) => ({
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: service.title,
+            description: service.summary,
+          },
+        })),
+      },
+      sameAs,
     },
     {
       "@type": "Person",
       "@id": `${site.url}/#person`,
       name: profile.name,
-      alternateName: [...site.aliases],
-      url: site.url,
-      jobTitle: "ITエンジニア",
-      description: site.description,
+      url: `${site.url}/company`,
+      jobTitle: profile.role,
       alumniOf: [
-        {
-          "@type": "CollegeOrUniversity",
-          name: "早稲田大学",
-        },
+        { "@type": "CollegeOrUniversity", name: "早稲田大学" },
         {
           "@type": "CollegeOrUniversity",
           name: "早稲田大学大学院 先進理工学研究科",
         },
       ],
-      knowsAbout: [
-        "AI活用",
-        "Claude Code",
-        "Web制作",
-        "Web開発",
-        "IT副業",
-        "ローコード開発",
-      ],
+      worksFor: { "@id": `${site.url}/#organization` },
       sameAs,
-    },
-    {
-      "@type": "ProfessionalService",
-      "@id": `${site.url}/#service`,
-      name: "ゆるしろ｜AI活用・Web制作・IT副業支援",
-      url: site.url,
-      description:
-        "早稲田院卒ITエンジニア・ゆるしろによる、Claude Codeを活用したAI開発支援・Web制作・IT副業のご相談。",
-      areaServed: "JP",
-      availableLanguage: "Japanese",
-      provider: { "@id": `${site.url}/#person` },
-      serviceType: ["AI活用支援", "Web制作", "IT副業相談", "Claude Code開発支援"],
     },
   ];
 

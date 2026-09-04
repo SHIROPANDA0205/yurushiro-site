@@ -1,25 +1,28 @@
 import type { Metadata } from "next";
-import {
-  Cormorant_Garamond,
-  Inter,
-  Noto_Sans_JP,
-  Shippori_Mincho,
-  Zen_Kaku_Gothic_New,
-} from "next/font/google";
+import { IBM_Plex_Mono, Noto_Sans_JP, Plus_Jakarta_Sans } from "next/font/google";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 import ScrollProgress from "@/components/ui/ScrollProgress";
 import CursorFollower from "@/components/ui/CursorFollower";
 import XFloatingButton from "@/components/ui/XFloatingButton";
+import Analytics from "@/components/seo/Analytics";
 import JsonLd from "@/components/seo/JsonLd";
 import { site } from "@/data/site";
 import "./globals.css";
 
-const display = Zen_Kaku_Gothic_New({
-  weight: ["500", "700"],
+/**
+ * 英字の見出し・ワードマーク。
+ * 和文グリフを持たないため、日本語は自動的に body（Noto Sans JP）へ
+ * フォールバックします（フォールバック順は tailwind.config.ts で定義）。
+ */
+const display = Plus_Jakarta_Sans({
+  weight: ["500", "600", "700", "800"],
   subsets: ["latin"],
   display: "swap",
   variable: "--font-display",
 });
 
+/** 和文の本文。英字フォントが持たない日本語の受け皿も兼ねる */
 const body = Noto_Sans_JP({
   weight: ["400", "500", "700"],
   subsets: ["latin"],
@@ -27,28 +30,12 @@ const body = Noto_Sans_JP({
   variable: "--font-body",
 });
 
-const en = Inter({
-  weight: ["500", "600", "700"],
+/** 数値・タグなど、機械的な質感を出したい箇所 */
+const mono = IBM_Plex_Mono({
+  weight: ["400", "500"],
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-en",
-});
-
-/** 見出しの一部に添える、上品なアクセント用の明朝体 */
-const serif = Shippori_Mincho({
-  weight: ["500", "700"],
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-serif",
-});
-
-/** 座右の銘など、英字の引用をエディトリアルに見せるセリフ体 */
-const serifEn = Cormorant_Garamond({
-  weight: ["500", "600", "700"],
-  style: ["italic", "normal"],
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-serif-en",
+  variable: "--font-mono",
 });
 
 export const metadata: Metadata = {
@@ -59,17 +46,17 @@ export const metadata: Metadata = {
   },
   description: site.description,
   keywords: [...site.keywords],
-  authors: [{ name: site.fullName, url: site.url }],
-  creator: site.fullName,
-  publisher: site.fullName,
+  authors: [{ name: site.name, url: site.url }],
+  creator: site.name,
+  publisher: site.name,
   alternates: {
-    canonical: site.url,
+    canonical: "/",
   },
   openGraph: {
     title: site.title,
     description: site.description,
     url: site.url,
-    siteName: site.fullName,
+    siteName: site.name,
     locale: "ja_JP",
     type: "website",
   },
@@ -99,28 +86,17 @@ export default function RootLayout({
   return (
     <html
       lang="ja"
-      className={`${display.variable} ${body.variable} ${en.variable} ${serif.variable} ${serifEn.variable}`}
+      className={`${display.variable} ${body.variable} ${mono.variable}`}
     >
-      <head>
-        {/*
-          リロード時、URLに残った #contact などのハッシュにブラウザが
-          自動でジャンプしてしまうのを防ぎ、常にページ先頭から表示させる。
-          body の描画・スクロール処理より前に走らせる必要があるため、
-          ここ（head内の同期スクリプト）に置いている。
-        */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html:
-              "if(window.location.hash){history.replaceState(null,'',window.location.pathname+window.location.search);}",
-          }}
-        />
-      </head>
-      <body className="bg-base font-body text-ink antialiased">
+      <body className="bg-bg font-body text-fg antialiased">
         <JsonLd />
+        <Analytics />
         <ScrollProgress />
         <CursorFollower />
         <XFloatingButton />
-        {children}
+        <Header />
+        <main id="main">{children}</main>
+        <Footer />
       </body>
     </html>
   );

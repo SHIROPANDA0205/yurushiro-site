@@ -1,127 +1,161 @@
 "use client";
 
-import { useRef } from "react";
-import Image from "next/image";
-import {
-  motion,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-} from "framer-motion";
-import { ArrowDown } from "lucide-react";
-
-const HERO_IMAGE = "/images/stay-hungry-stay-foolish.png";
+import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import GridBackground from "@/components/ui/GridBackground";
+import SplitText from "@/components/ui/SplitText";
+import HeroPillars from "@/components/ui/HeroPillars";
+import HeroMark from "@/components/ui/HeroMark";
+import { site } from "@/data/site";
 
 /**
  * ファーストビュー。
- * 添付画像をフルスクリーン背景にし、シンプルなタグライン・CTAを重ねます。
- * 画像内に焼き込まれた英語・日本語のコピーは sr-only で補完します。
- * 背景の写真は、スクロールに応じてゆっくり視差移動（パララックス）します。
+ *
+ * 左にタグラインと導線、右にロゴマークを大きく置く2カラム構成です。
+ * ロゴは画面が狭いと縦の場所を取りすぎるため、lg 未満では表示しません。
  */
 export default function Hero() {
   const reduceMotion = useReducedMotion();
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"],
-  });
-  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
 
   const fadeIn = (delay: number) =>
     reduceMotion
       ? {}
       : {
-          initial: { opacity: 0, y: 14 },
+          initial: { opacity: 0, y: 16 },
           animate: { opacity: 1, y: 0 },
-          transition: { duration: 0.9, delay, ease: [0.16, 1, 0.3, 1] },
+          transition: { duration: 0.9, delay, ease: [0.16, 1, 0.3, 1] as const },
         };
 
   return (
     <section
-      ref={sectionRef}
-      id="home"
-      aria-label="Stay Hungry, Stay Foolish"
-      className="relative flex h-[100svh] min-h-[640px] flex-col overflow-hidden bg-ink"
+      aria-label="AI LINK CRAFT"
+      className="relative flex min-h-[92svh] items-center overflow-hidden pb-16 pt-28 sm:pb-24 sm:pt-36"
     >
-      {/* 画像エリア（スクロール連動パララックス + 初回表示のKen Burns） */}
-      <div className="relative flex-1 overflow-hidden">
-        <motion.div
-          className="absolute inset-0"
-          style={reduceMotion ? undefined : { y: imageY }}
-        >
+      <GridBackground />
+
+      <div className="relative mx-auto w-full max-w-content px-4 sm:px-6">
+        <div className="grid items-center gap-14 lg:grid-cols-[1.1fr_0.9fr]">
+          {/* 左：コピーと導線 */}
+          <div>
+            {/* 屋号ラベル */}
+            <motion.div
+              {...fadeIn(0.05)}
+              className="inline-flex items-center gap-2 rounded-full border border-line bg-fg/[0.03] px-3.5 py-1.5"
+            >
+              <span
+                aria-hidden="true"
+                className="grad-surface h-1.5 w-1.5 rounded-full animate-breathe"
+              />
+              <span className="font-mono text-[11px] tracking-[0.2em] text-fg-muted">
+                {site.name}
+              </span>
+            </motion.div>
+
+            {/* タグライン */}
+            {/*
+             * font-bold（700）で止めているのは、この見出しが和文で、
+             * 実際に描画されるのが Noto Sans JP だから。800 を指定すると
+             * 読み込んでいない太さをブラウザが合成し、字がにじむ。
+             */}
+            <h1 className="mt-7 font-display text-[clamp(2.5rem,8vw,5rem)] font-bold leading-[1.05] tracking-tight text-fg">
+              <SplitText text="つなぐを、" delay={0.2} />
+              <br />
+              {/*
+               * 2行目はグラデーション文字（.grad-text）にするため、1文字ずつ
+               * motion.span に分割しない。文字を分割すると、各文字が個別の
+               * 描画レイヤーになり、Safari 系ブラウザでは親のグラデーションが
+               * 正しく塗られず文字が透明（＝見えない）になることがあるため。
+               */}
+              <motion.span
+                className="grad-text inline-block"
+                initial={reduceMotion ? undefined : { opacity: 0, y: "0.4em" }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.8,
+                  delay: 0.55,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+              >
+                つくる。
+              </motion.span>
+            </h1>
+
+            <motion.p
+              {...fadeIn(0.9)}
+              className="mt-6 font-mono text-xs tracking-[0.24em] text-fg-dim sm:text-sm"
+            >
+              {site.taglineEn}
+            </motion.p>
+
+            {/* 導線 */}
+            <motion.div
+              {...fadeIn(1.0)}
+              className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center"
+            >
+              <Link
+                href="/contact"
+                className="btn-shine group grad-surface inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-sm font-bold text-bg shadow-[0_14px_40px_-14px_rgba(91,140,255,0.9)] transition-transform duration-300 hover:-translate-y-0.5"
+              >
+                相談してみる
+                <ArrowRight
+                  aria-hidden="true"
+                  className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5"
+                />
+              </Link>
+              <Link
+                href="/works"
+                className="group inline-flex items-center justify-center gap-2 rounded-full border border-line-strong bg-fg/[0.02] px-8 py-4 text-sm font-bold text-fg transition-all duration-300 hover:-translate-y-0.5 hover:bg-fg/[0.06]"
+              >
+                制作実績を見る
+                <ArrowUpRight
+                  aria-hidden="true"
+                  className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                />
+              </Link>
+            </motion.div>
+
+            {/* 事業の3本柱。詳細は下のセクションが担うため、ここでは名前だけ */}
+            <HeroPillars delay={1.2} />
+          </div>
+
+          {/* 右：ロゴマーク。狭い画面では出さない */}
           <motion.div
-            className="absolute inset-0"
-            initial={reduceMotion ? false : { scale: 1.08 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 2.6, ease: [0.16, 1, 0.3, 1] }}
+            aria-hidden="true"
+            className="hidden justify-center lg:flex"
+            initial={reduceMotion ? undefined : { opacity: 0, scale: 0.92 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
           >
-            <Image
-              src={HERO_IMAGE}
-              alt=""
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover object-center"
-            />
+            <motion.div
+              className="relative"
+              animate={reduceMotion ? undefined : { y: [0, -14, 0] }}
+              transition={{
+                duration: 7,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            >
+              {/* マークの背後に敷く、ゆっくり明滅するグロー */}
+              <motion.span
+                className="absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[90px]"
+                style={{
+                  background:
+                    "radial-gradient(circle, rgba(91,140,255,0.22), rgba(166,108,255,0.12) 45%, transparent 70%)",
+                }}
+                animate={
+                  reduceMotion ? undefined : { opacity: [0.65, 1, 0.65] }
+                }
+                transition={{
+                  duration: 5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+              <HeroMark size={300} />
+            </motion.div>
           </motion.div>
-        </motion.div>
-
-        {/* 画像下端を暗色に溶け込ませるグラデーション */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-ink"
-        />
-      </div>
-
-      {/* 検索・アクセシビリティ用（見た目はヒーロー画像のコピーを優先） */}
-      <div className="sr-only">
-        <h1>ゆるしろAI｜AI開発・Web制作・IT副業</h1>
-        <p>Stay Hungry, Stay Foolish. ハングリーであれ。愚かであれ。</p>
-      </div>
-
-      {/* コンテンツ（画像の下の暗色帯に配置し、写真と重ならないようにする） */}
-      <div className="flex flex-col items-center bg-ink px-4 pb-8 pt-5 sm:pb-12 sm:pt-7">
-        {/* 金のヘアライン（画像内の区切り線と呼応させる） */}
-        <motion.span
-          {...fadeIn(0.7)}
-          aria-hidden="true"
-          className="mb-5 h-px w-10 bg-gradient-to-r from-transparent via-gold-bright/80 to-transparent sm:mb-6 sm:w-14"
-        />
-
-        <motion.p
-          {...fadeIn(0.9)}
-          className="max-w-2xl text-center font-serif text-base font-medium leading-relaxed tracking-[0.14em] text-white sm:text-lg"
-        >
-          技術だけではなく、
-          <span className="text-gold-bright">人とのつながり</span>
-          を大切に。
-        </motion.p>
-
-        <motion.div {...fadeIn(1.1)} className="mt-6 sm:mt-8">
-          <a
-            href="#contact"
-            className="btn-shine group inline-flex items-center gap-3 rounded-full border border-gold/50 bg-transparent px-9 py-3.5 font-serif text-sm font-medium tracking-[0.14em] text-gold-bright transition-all duration-300 hover:-translate-y-0.5 hover:border-gold-bright hover:bg-gold/10 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:text-base"
-          >
-            まずは気軽にお話ししましょう
-            <ArrowDown
-              aria-hidden="true"
-              className="h-4 w-4 transition-transform group-hover:translate-y-0.5"
-            />
-          </a>
-        </motion.div>
-
-        <motion.a
-          {...fadeIn(1.3)}
-          href="#message"
-          aria-label="次のセクションへスクロール"
-          className="mt-6 flex flex-col items-center gap-2 text-white/40 transition-colors hover:text-gold-bright focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:mt-8"
-        >
-          <span className="font-serif-en text-xs font-semibold uppercase tracking-[0.4em]">
-            Scroll
-          </span>
-          <ArrowDown className="h-4 w-4 animate-bounce" strokeWidth={1.25} aria-hidden="true" />
-        </motion.a>
+        </div>
       </div>
     </section>
   );
