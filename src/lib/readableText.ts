@@ -8,6 +8,10 @@ export function plainText(text: string) {
   return text.replace(/\u2060/g, "").replace(/\u200b/g, "");
 }
 
+function charCount(text: string) {
+  return Array.from(text).length;
+}
+
 /** タイトル用。ゼロ幅スペースで指定した切れ目だけを使う */
 export function splitPhrases(text: string) {
   return text
@@ -41,7 +45,7 @@ export function splitReadable(text: string, maxChars = 24) {
   const lines: string[] = [];
 
   for (const sentence of hardParts) {
-    if ([...sentence].length <= maxChars) {
+    if (charCount(sentence) <= maxChars) {
       lines.push(sentence);
       continue;
     }
@@ -54,7 +58,7 @@ export function splitReadable(text: string, maxChars = 24) {
     let buffer = "";
     for (const clause of clauses) {
       const next = `${buffer}${clause}`;
-      if (buffer && [...next].length > maxChars) {
+      if (buffer && charCount(next) > maxChars) {
         lines.push(buffer);
         buffer = clause;
       } else {
