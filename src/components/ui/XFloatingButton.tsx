@@ -16,7 +16,7 @@ function XIcon({ className }: { className?: string }) {
 
 /**
  * 画面右下に固定表示する X へのショートカット。
- * 丸い X アイコンの横に「Follow me!」を外出しで添える。
+ * 問い合わせのCTAと競合しないよう、アイコンのみの控えめな見た目にしています。
  */
 export default function XFloatingButton() {
   if (!xLink) return null;
@@ -26,15 +26,10 @@ export default function XFloatingButton() {
       href={xLink.url}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Follow me on X"
-      className="group fixed bottom-5 right-5 z-40 flex items-center gap-3 sm:bottom-7 sm:right-7 sm:gap-3.5"
+      aria-label="Xでフォローする"
+      className="group fixed bottom-5 right-5 z-40 inline-flex h-11 w-11 items-center justify-center rounded-full border border-line bg-bg-surface/80 text-fg-muted backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-line-strong hover:text-fg sm:bottom-7 sm:right-7 sm:h-12 sm:w-12"
     >
-      <span className="font-serif-en text-sm font-semibold italic tracking-[0.06em] text-ink transition-colors duration-300 group-hover:text-gold sm:text-base">
-        Follow me!
-      </span>
-      <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-ink text-white shadow-[0_8px_24px_rgba(30,27,22,0.28)] transition-all duration-300 group-hover:-translate-y-0.5 group-hover:bg-gold group-hover:text-ink sm:h-14 sm:w-14">
-        <XIcon className="h-5 w-5 sm:h-6 sm:w-6" />
-      </span>
+      <XIcon className="h-4 w-4 sm:h-5 sm:w-5" />
     </a>
   );
 }

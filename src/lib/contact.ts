@@ -1,6 +1,6 @@
 /**
  * 問い合わせフォームの送信処理。
- * Formspree 経由で yurushiro.contact@gmail.com に届きます。
+ * Formspree 経由で問い合わせ用アドレスに届きます。
  *
  * 設定:
  * 1. https://formspree.io でアカウント作成（受信メールで登録）
@@ -40,7 +40,7 @@ export async function submitContact(
         inquiryType: data.inquiryType,
         message: data.message,
         _replyto: data.email,
-        _subject: `【ゆるしろ】お問い合わせ: ${data.inquiryType} / ${data.name}`,
+        _subject: `【AI LINK CRAFT】お問い合わせ: ${data.inquiryType} / ${data.name}`,
       }),
     });
 

@@ -24,10 +24,13 @@ type Business = {
 
 export const business: Business = {
   tradeName: "AI LINK CRAFT",
-  lead: "「ゆるしろ」は活動名です。事業は AI LINK CRAFT という屋号で行っています。",
+  lead: "AI LINK CRAFT は、代表・ゆるしろが個人事業として運営する屋号です。ご契約・お支払いはこの屋号で承ります。",
   items: [
     { label: "屋号", value: "AI LINK CRAFT" },
-    { label: "代表者", value: "稲田 康佑（活動名：ゆるしろ）" },
+    {
+      label: "代表者",
+      value: "ゆるしろ（本名はお問い合わせいただいた際に開示いたします）",
+    },
     { label: "開業", value: "2026年8月1日" },
     {
       label: "事業内容",

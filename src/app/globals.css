@@ -2,41 +2,110 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * AI LINK CRAFT はライトテーマ固定。
+ * OS のダークモードでも配色を反転させないよう、color-scheme を light に固定する。
+ */
 html {
   scroll-behavior: smooth;
   color-scheme: light;
+  background-color: #ffffff;
 }
 
 body {
   overflow-x: hidden;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
+::selection {
+  background: rgba(139, 79, 224, 0.18);
+  color: #0f1222;
 }
 
 :focus-visible {
-  outline: 2px solid #ab8a56;
+  outline: 2px solid #3b6fe0;
   outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* 明るい地に合わせたスクロールバー */
+@supports (scrollbar-color: auto) {
+  html {
+    scrollbar-color: rgba(15, 18, 34, 0.18) transparent;
+    scrollbar-width: thin;
+  }
+}
+
+@layer utilities {
+  /* ブランドのグラデーションを文字に流し込む */
+  .grad-text {
+    background-image: linear-gradient(100deg, #3b6fe0 0%, #8b4fe0 52%, #0ea5c4 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    /* Safari は color: transparent だけだと塗りが乗らないことがあるため併記 */
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* 同じグラデーションを面として使う */
+  .grad-surface {
+    background-image: linear-gradient(135deg, #3b6fe0 0%, #8b4fe0 52%, #0ea5c4 100%);
+  }
+
+  /*
+   * 1px の枠線をグラデーションにする。
+   * 枠線プロパティではグラデーションを直接指定できないため、
+   * 背景を2枚重ねて内側だけ地色で塗りつぶしている。
+   */
+  .grad-border {
+    border: 1px solid transparent;
+    background-image:
+      linear-gradient(#f7f8fb, #f7f8fb),
+      linear-gradient(120deg, #3b6fe0, #8b4fe0, #0ea5c4);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+  }
+
+  /* セクションの区切りに使う、中央が濃いヘアライン */
+  .hairline {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(15, 18, 34, 0.14),
+      transparent
+    );
+  }
+
+  /* Hero などの背景に敷く方眼 */
+  .grid-lines {
+    background-image:
+      linear-gradient(rgba(15, 18, 34, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15, 18, 34, 0.06) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+
+  /* 横スクロールするマーキーの両端をフェードさせる */
+  .fade-x {
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent,
+      #000 12%,
+      #000 88%,
+      transparent
+    );
+    mask-image: linear-gradient(
+      90deg,
+      transparent,
+      #000 12%,
+      #000 88%,
+      transparent
+    );
+  }
 }
 
 /*
- * 一部のプレビュー環境（OS/ブラウザの自動配色調整）が、短いテキストや
- * ラベル的な要素の文字色を意図せず反転させることがあるため、
- * サイトの基本テキストカラーは常にこの色で固定する。
- */
-.text-ink {
-  color: #1e1b16 !important;
-}
-.text-ink-soft {
-  color: #6f6a5e !important;
-}
-
-/*
- * ゴールドの主要ボタンにあしらう、光が斜めに走る微細なシャインアニメーション。
- * ホバー時に一度だけ左から右へ光が通過し、上質な質感を演出する。
+ * ボタンにあしらう、光が斜めに走るシャインアニメーション。
+ * ホバー時に一度だけ左から右へ光が通過する。
  */
 .btn-shine {
   position: relative;
@@ -53,7 +122,7 @@ body {
   background: linear-gradient(
     115deg,
     transparent,
-    rgba(255, 255, 255, 0.55),
+    rgba(255, 255, 255, 0.4),
     transparent
   );
   transform: skewX(-20deg);
@@ -65,9 +134,24 @@ body {
   left: 125%;
 }
 
+/*
+ * 動きを減らす設定の利用者には、装飾的なアニメーションを止める。
+ * framer-motion 側は useReducedMotion で個別に対応している。
+ */
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   .btn-shine::after {
-    transition: none;
     display: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
   }
 }

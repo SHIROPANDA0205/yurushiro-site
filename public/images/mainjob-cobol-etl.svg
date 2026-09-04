@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-label="COBOLで構築された既存資産を、ETLによるデータ連携基盤へ移行することを表した図">
+  <defs>
+    <linearGradient id="brand" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%" stop-color="#3B6FE0"/>
+      <stop offset="55%" stop-color="#8B4FE0"/>
+      <stop offset="100%" stop-color="#0EA5C4"/>
+    </linearGradient>
+    <linearGradient id="arrow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#3B6FE0"/>
+      <stop offset="100%" stop-color="#0EA5C4"/>
+    </linearGradient>
+    <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F7F8FB"/>
+      <stop offset="100%" stop-color="#FFFFFF"/>
+    </linearGradient>
+    <pattern id="grid" width="44" height="44" patternUnits="userSpaceOnUse">
+      <path d="M44 0H0V44" fill="none" stroke="#0F1222" stroke-opacity="0.05" stroke-width="1"/>
+    </pattern>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#8B4FE0" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#8B4FE0" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- 地とうっすらした方眼 -->
+  <rect width="1600" height="900" fill="url(#fade)"/>
+  <rect width="1600" height="900" fill="url(#grid)"/>
+  <ellipse cx="1050" cy="440" rx="420" ry="330" fill="url(#glow)"/>
+
+  <!-- 左：老朽化したCOBOL資産 -->
+  <g>
+    <rect x="100" y="250" width="380" height="380" rx="28" fill="#0F1222"/>
+    <!-- コードらしさを出すための行 -->
+    <g fill="#FFFFFF" fill-opacity="0.16">
+      <rect x="144" y="298" width="190" height="12" rx="6"/>
+      <rect x="144" y="330" width="252" height="12" rx="6"/>
+      <rect x="144" y="362" width="150" height="12" rx="6"/>
+      <rect x="144" y="394" width="214" height="12" rx="6"/>
+    </g>
+    <text x="290" y="492" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="92" font-weight="800" fill="#FFFFFF" letter-spacing="2">COBOL</text>
+    <text x="290" y="552" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="34" fill="#8A90A6">老朽化した既存資産</text>
+  </g>
+
+  <!-- 中央：移行の矢印 -->
+  <g>
+    <text x="700" y="392" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="38" font-weight="700" fill="#5A6178">移行</text>
+    <path d="M530 440 H840" stroke="url(#arrow)" stroke-width="12" stroke-linecap="round"/>
+    <path d="M842 440 L790 410 L790 470 Z" fill="#0EA5C4"/>
+  </g>
+
+  <!-- 右：ETLによるデータ連携基盤 -->
+  <g>
+    <!-- 連携線 -->
+    <g stroke="#0EA5C4" stroke-opacity="0.55" stroke-width="4" fill="none">
+      <path d="M1180 440 C1220 440 1220 364 1260 364"/>
+      <path d="M1180 440 H1260"/>
+      <path d="M1180 440 C1220 440 1220 516 1260 516"/>
+    </g>
+
+    <!-- ETLのハブ -->
+    <rect x="920" y="310" width="260" height="260" rx="64" fill="url(#brand)"/>
+    <text x="1050" y="470" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="84" font-weight="800" fill="#FFFFFF" letter-spacing="4">ETL</text>
+
+    <!-- 連携先（一般名詞のみ。実在サービス名は使わない） -->
+    <g font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="30" fill="#0F1222">
+      <rect x="1260" y="330" width="240" height="68" rx="34" fill="#FFFFFF" stroke="#0F1222" stroke-opacity="0.1" stroke-width="2"/>
+      <text x="1380" y="374" text-anchor="middle">データベース</text>
+
+      <rect x="1260" y="406" width="240" height="68" rx="34" fill="#FFFFFF" stroke="#0F1222" stroke-opacity="0.1" stroke-width="2"/>
+      <text x="1380" y="450" text-anchor="middle">業務システム</text>
+
+      <rect x="1260" y="482" width="240" height="68" rx="34" fill="#FFFFFF" stroke="#0F1222" stroke-opacity="0.1" stroke-width="2"/>
+      <text x="1380" y="526" text-anchor="middle">ファイル</text>
+    </g>
+  </g>
+
+  <!-- 下段：移行によって得られたこと -->
+  <g font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="34" fill="#5A6178" text-anchor="middle">
+    <path d="M100 700 H1500" stroke="#0F1222" stroke-opacity="0.08" stroke-width="2"/>
+    <circle cx="300" cy="783" r="7" fill="#3B6FE0"/>
+    <text x="340" y="795" text-anchor="start">老朽化の解消</text>
+    <circle cx="700" cy="783" r="7" fill="#8B4FE0"/>
+    <text x="740" y="795" text-anchor="start">属人化の解消</text>
+    <circle cx="1100" cy="783" r="7" fill="#0EA5C4"/>
+    <text x="1140" y="795" text-anchor="start">保守しやすい構成へ</text>
+  </g>
+</svg>

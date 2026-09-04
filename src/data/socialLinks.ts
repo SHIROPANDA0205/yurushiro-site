@@ -1,7 +1,6 @@
 /**
- * SNSリンク。url を実際のアカウントURLに変更してください。
+ * SNS・外部サービスのリンク。
  * enabled を false にすると、そのアイコンは表示されません。
- * 現状は X（旧Twitter）のみ連携しています。
  */
 export type SocialLink = {
   id: "github" | "x" | "instagram";
@@ -14,8 +13,8 @@ export const socialLinks: SocialLink[] = [
   {
     id: "github",
     label: "GitHub",
-    url: "https://github.com/your-account",
-    enabled: false,
+    url: "https://github.com/SHIROPANDA0205",
+    enabled: true,
   },
   {
     id: "x",
@@ -30,6 +29,9 @@ export const socialLinks: SocialLink[] = [
     enabled: false,
   },
 ];
+
+/** 表示対象のリンクのみ */
+export const activeSocialLinks = socialLinks.filter((link) => link.enabled);
 
 /** 有効な X アカウント（フローティングボタン用） */
 export const xLink = socialLinks.find((link) => link.id === "x" && link.enabled);
