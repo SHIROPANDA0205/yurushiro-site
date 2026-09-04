@@ -2,6 +2,8 @@ import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import GridBackground from "@/components/ui/GridBackground";
 import Reveal from "@/components/ui/Reveal";
+import ReadableText from "@/components/ui/ReadableText";
+import { plainText } from "@/lib/readableText";
 
 type Crumb = { label: string; href?: string };
 
@@ -44,7 +46,7 @@ export default function PageHeader({
                     {crumb.label}
                   </Link>
                 ) : (
-                  <span className="text-fg-muted">{crumb.label}</span>
+                  <span className="text-fg-muted">{plainText(crumb.label)}</span>
                 )}
               </li>
             ))}
@@ -55,12 +57,12 @@ export default function PageHeader({
           <p className="font-mono text-xs tracking-[0.24em] text-brand-blue">
             {eyebrow}
           </p>
-          <h1 className="mt-4 font-display text-3xl font-bold leading-tight tracking-tight text-fg sm:text-5xl">
-            {title}
+          <h1 className="mt-4 max-w-5xl font-display text-3xl font-bold leading-tight tracking-tight text-fg sm:text-5xl">
+            <ReadableText text={title} mode="phrases" />
           </h1>
           {lead && (
-            <p className="mt-6 max-w-2xl text-sm leading-relaxed text-fg-muted sm:text-base sm:leading-loose">
-              {lead}
+            <p className="mt-6 max-w-4xl text-sm leading-relaxed text-fg-muted sm:text-base sm:leading-loose">
+              <ReadableText text={lead} maxChars={26} />
             </p>
           )}
         </Reveal>

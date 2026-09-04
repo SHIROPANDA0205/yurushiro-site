@@ -95,7 +95,7 @@ export default function Hero() {
             >
               <Link
                 href="/contact"
-                className="btn-shine group grad-surface inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-sm font-bold text-bg shadow-[0_14px_40px_-14px_rgba(91,140,255,0.9)] transition-transform duration-300 hover:-translate-y-0.5"
+                className="btn-shine group grad-surface inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full px-8 py-4 text-sm font-bold text-bg shadow-[0_14px_40px_-14px_rgba(91,140,255,0.9)] transition-transform duration-300 hover:-translate-y-0.5"
               >
                 相談してみる
                 <ArrowRight
@@ -105,7 +105,7 @@ export default function Hero() {
               </Link>
               <Link
                 href="/works"
-                className="group inline-flex items-center justify-center gap-2 rounded-full border border-line-strong bg-fg/[0.02] px-8 py-4 text-sm font-bold text-fg transition-all duration-300 hover:-translate-y-0.5 hover:bg-fg/[0.06]"
+                className="group inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full border border-line-strong bg-fg/[0.02] px-8 py-4 text-sm font-bold text-fg transition-all duration-300 hover:-translate-y-0.5 hover:bg-fg/[0.06]"
               >
                 制作実績を見る
                 <ArrowUpRight

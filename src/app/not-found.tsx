@@ -13,9 +13,8 @@ export default function NotFound() {
       <div className="relative">
         <p className="font-mono text-xs tracking-[0.3em] text-brand-blue">404</p>
         <h1 className="mt-6 font-display text-2xl font-bold leading-snug text-fg sm:text-4xl">
-          お探しのページが
-          <br className="sm:hidden" />
-          見つかりませんでした
+          <span className="inline-block">お探しのページが</span>
+          <span className="inline-block">見つかりませんでした</span>
         </h1>
         <span aria-hidden="true" className="hairline mx-auto mt-7 block w-16" />
         <p className="mx-auto mt-7 max-w-md text-sm leading-relaxed text-fg-muted sm:text-base">

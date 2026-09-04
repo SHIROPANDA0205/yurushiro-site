@@ -69,7 +69,7 @@ export default function Header() {
                     <Link
                       href={item.href}
                       aria-current={active ? "page" : undefined}
-                      className={`group relative inline-block px-3.5 py-2 font-mono text-xs tracking-[0.18em] transition-colors duration-300 ${
+                      className={`group relative inline-block px-2.5 py-2 font-mono text-xs tracking-[0.18em] transition-colors duration-300 lg:px-3.5 ${
                         active ? "text-fg" : "text-fg-dim hover:text-fg-muted"
                       }`}
                     >
@@ -91,7 +91,7 @@ export default function Header() {
 
           <Link
             href={contactNav.href}
-            className="btn-shine ml-3 inline-flex items-center rounded-full border border-line-strong bg-fg/[0.03] px-5 py-2 text-xs font-bold text-fg transition-all duration-300 hover:-translate-y-0.5 hover:bg-fg/[0.08]"
+            className="btn-shine ml-2 inline-flex shrink-0 items-center whitespace-nowrap rounded-full border border-line-strong bg-fg/[0.03] px-4 py-2 text-xs font-bold text-fg transition-all duration-300 hover:-translate-y-0.5 hover:bg-fg/[0.08] lg:ml-3 lg:px-5"
           >
             {contactNav.label}
           </Link>

@@ -4,6 +4,7 @@ import Logo from "@/components/brand/Logo";
 import Reveal from "@/components/ui/Reveal";
 import SectionTitle from "@/components/ui/SectionTitle";
 import ButtonLink from "@/components/ui/ButtonLink";
+import ReadableText from "@/components/ui/ReadableText";
 import { homeBio, profile, profileCardItems } from "@/data/profile";
 
 /**
@@ -69,7 +70,7 @@ export default function Representative() {
                   key={paragraph.slice(0, 20)}
                   className="text-sm leading-relaxed text-fg-muted sm:text-base sm:leading-loose"
                 >
-                  {paragraph}
+                  <ReadableText text={paragraph} maxChars={28} />
                 </p>
               ))}
             </div>

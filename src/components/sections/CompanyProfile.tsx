@@ -3,6 +3,7 @@ import { BookOpen, Dumbbell, MessageCircle, Spade } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import SectionTitle from "@/components/ui/SectionTitle";
 import Tag from "@/components/ui/Tag";
+import ReadableText from "@/components/ui/ReadableText";
 import { certificationCount, profile } from "@/data/profile";
 
 /** profile.ts の icon キーと lucide-react のアイコンの対応 */
@@ -64,7 +65,7 @@ export default function CompanyProfile() {
                       {item.label}
                     </dt>
                     <dd className="mt-1.5 text-sm leading-relaxed text-fg-muted">
-                      {item.value}
+                      <ReadableText text={item.value} mode="phrases" />
                     </dd>
                   </div>
                 ))}
@@ -108,7 +109,7 @@ export default function CompanyProfile() {
                     key={paragraph.slice(0, 20)}
                     className="text-sm leading-relaxed text-fg-muted sm:text-base sm:leading-loose"
                   >
-                    {paragraph}
+                    <ReadableText text={paragraph} maxChars={28} />
                   </p>
                 ))}
               </div>
@@ -142,7 +143,7 @@ export default function CompanyProfile() {
                       {event.date}
                     </p>
                     <p className="mt-1.5 text-sm font-bold text-fg">
-                      {event.title}
+                      <ReadableText text={event.title} mode="phrases" />
                     </p>
                     {event.description && (
                       <p className="mt-1 text-sm leading-relaxed text-fg-muted">

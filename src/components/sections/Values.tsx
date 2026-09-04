@@ -1,6 +1,7 @@
 import { Handshake, PenLine, Repeat, Rocket, Users } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import SectionTitle from "@/components/ui/SectionTitle";
+import ReadableText from "@/components/ui/ReadableText";
 import { values } from "@/data/values";
 
 /** values.ts の icon キーと lucide-react のアイコンの対応 */
@@ -39,10 +40,10 @@ export default function Values() {
                     <Icon aria-hidden="true" className="h-4 w-4" strokeWidth={1.6} />
                   </span>
                   <h3 className="mt-5 text-sm font-bold leading-snug text-fg">
-                    {value.title}
+                    <ReadableText text={value.title} mode="phrases" />
                   </h3>
                   <p className="mt-2.5 text-sm leading-relaxed text-fg-muted">
-                    {value.description}
+                    <ReadableText text={value.description} maxChars={28} />
                   </p>
                 </Reveal>
               </li>

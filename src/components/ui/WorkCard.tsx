@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import TiltCard from "@/components/ui/TiltCard";
 import Tag from "@/components/ui/Tag";
+import ReadableText from "@/components/ui/ReadableText";
 import { workCategoryLabels, type Work } from "@/data/works";
 
 /**
@@ -11,7 +12,7 @@ import { workCategoryLabels, type Work } from "@/data/works";
  */
 export default function WorkCard({ work }: { work: Work }) {
   const inner = (
-    <article className="flex h-full flex-col overflow-hidden rounded-card border border-line bg-bg-surface transition-colors duration-300 group-hover:border-line-strong">
+    <article className="flex h-full min-w-0 flex-col overflow-hidden rounded-card border border-line bg-bg-surface transition-colors duration-300 group-hover:border-line-strong">
       {/* サムネイル */}
       <div className="relative aspect-[16/10] overflow-hidden bg-bg-raised">
         {work.thumbnail ? (
@@ -41,9 +42,11 @@ export default function WorkCard({ work }: { work: Work }) {
       </div>
 
       {/* 本文 */}
-      <div className="flex flex-1 flex-col p-5">
+      <div className="flex flex-1 flex-col p-5 sm:p-6">
         <h3 className="flex items-start justify-between gap-3 font-display text-base font-bold leading-snug text-fg">
-          <span>{work.title}</span>
+          <span className="min-w-0">
+            <ReadableText text={work.title} mode="phrases" />
+          </span>
           {!work.comingSoon && (
             <ArrowUpRight
               aria-hidden="true"
@@ -53,13 +56,13 @@ export default function WorkCard({ work }: { work: Work }) {
         </h3>
 
         <p className="mt-2.5 flex-1 text-sm leading-relaxed text-fg-muted">
-          {work.summary}
+          <ReadableText text={work.summary} maxChars={20} />
         </p>
 
         {work.tech.length > 0 && (
-          <ul className="mt-4 flex flex-wrap gap-1.5">
+          <ul className="mt-4 flex max-w-full flex-wrap gap-1.5">
             {work.tech.slice(0, 4).map((tech) => (
-              <li key={tech}>
+              <li key={tech} className="max-w-full">
                 <Tag>{tech}</Tag>
               </li>
             ))}

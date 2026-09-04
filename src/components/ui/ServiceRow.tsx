@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, Layout, Sparkles, Workflow } from "lucide-react";
+import ReadableText from "@/components/ui/ReadableText";
 import type { Service } from "@/data/services";
 
 /** services.ts の icon キーと lucide-react のアイコンの対応 */
@@ -38,7 +39,7 @@ export default function ServiceRow({ service }: { service: Service }) {
         </p>
 
         <p className="mt-3 text-sm leading-relaxed text-fg-muted">
-          {service.summary}
+          <ReadableText text={service.summary} maxChars={24} />
         </p>
 
         {/* 実際に頼めること */}

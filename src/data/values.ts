@@ -35,7 +35,7 @@ export const values: ValueItem[] = [
   },
   {
     icon: "repeat",
-    title: "また一緒に仕事がしたいと思われる存在になる",
+    title: "また一緒に仕事がしたいと\u200b思われる存在になる",
     description:
       "納品して終わりではなく、長く信頼していただける関係を目指します。",
   },

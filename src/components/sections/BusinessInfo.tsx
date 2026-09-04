@@ -1,5 +1,6 @@
 import Reveal from "@/components/ui/Reveal";
 import SectionTitle from "@/components/ui/SectionTitle";
+import ReadableText from "@/components/ui/ReadableText";
 import { business } from "@/data/business";
 
 /**
@@ -13,7 +14,7 @@ export default function BusinessInfo() {
       aria-label="事業者情報"
       className="scroll-mt-24 border-t border-line bg-bg-surface/40 py-20 sm:py-24"
     >
-      <div className="mx-auto max-w-3xl px-4 sm:px-6">
+      <div className="mx-auto max-w-5xl px-4 sm:px-6">
         <SectionTitle
           eyebrow="BUSINESS"
           title="事業者情報"
@@ -41,7 +42,7 @@ export default function BusinessInfo() {
                       {item.email}
                     </a>
                   )}
-                  {item.value}
+                  <ReadableText text={item.value} maxChars={28} />
                 </dd>
               </div>
             ))}

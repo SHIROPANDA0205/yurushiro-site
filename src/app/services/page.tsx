@@ -5,6 +5,7 @@ import Process from "@/components/sections/Process";
 import Reveal from "@/components/ui/Reveal";
 import Tag from "@/components/ui/Tag";
 import CTA from "@/components/sections/CTA";
+import ReadableText from "@/components/ui/ReadableText";
 import { services } from "@/data/services";
 
 export const metadata: Metadata = {
@@ -60,7 +61,7 @@ export default function ServicesPage() {
                     </p>
 
                     <p className="mt-6 text-sm leading-relaxed text-fg-muted sm:text-base sm:leading-loose">
-                      {service.description}
+                      <ReadableText text={service.description} maxChars={26} />
                     </p>
 
                     <ul className="mt-7 flex flex-wrap gap-1.5">
@@ -126,7 +127,7 @@ export default function ServicesPage() {
 
       {/* 料金についての考え方 */}
       <section className="border-t border-line bg-bg-surface/40 py-16 sm:py-20">
-        <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
+        <div className="mx-auto max-w-4xl px-4 text-center sm:px-6">
           <Reveal>
             <p className="font-mono text-xs tracking-[0.22em] text-brand-blue">
               PRICING

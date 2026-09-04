@@ -1,5 +1,6 @@
 import Reveal from "@/components/ui/Reveal";
 import SectionTitle from "@/components/ui/SectionTitle";
+import ReadableText from "@/components/ui/ReadableText";
 import { processSteps } from "@/data/process";
 
 /**
@@ -50,7 +51,7 @@ export default function Process() {
                     </div>
 
                     <p className="mt-3 text-sm leading-relaxed text-fg-muted">
-                      {step.description}
+                      <ReadableText text={step.description} maxChars={26} />
                     </p>
 
                     {step.deliverable && (
