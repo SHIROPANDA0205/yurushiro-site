@@ -39,8 +39,6 @@ export type Repository = {
   /** GitHub上のリポジトリ名。URLの組み立てにも使う */
   name: string;
   description: string;
-  /** 何のために作ったか。READMEに書かない意図をここに書く */
-  reason?: string;
   tech: string[];
   /** 省略すると githubAccount + name のURLになります */
   url?: string;
@@ -58,21 +56,17 @@ export const repositories: Repository[] = [
     title: "金沢観光案内AIチャットボット",
     name: "kanazawa-tourism-ai-chatbot",
     description:
-      "金沢観光ガイドをナレッジとして登録し、観光客の質問に答えるRAGチャットボットです。営業時間や料金の案内、関連スポットの提案まで対応します。",
-    reason:
-      "AIに何でも答えさせると、事実でないことを自信ありげに答えてしまいます。ナレッジに無い情報は推測で答えないようプロンプトを設計し、その抑え方を確かめた場所です。",
+      "金沢の観光ガイドをナレッジ化し、観光客の質問に答えるRAGチャットボット。",
     tech: ["Dify", "OpenAI API", "RAG", "プロンプト設計"],
     thumbnail: "/images/repo-kanazawa-chatbot.svg",
     thumbnailAlt:
-      "ナレッジにある質問には答え、無い質問には推測せず答えないよう設計した流れの図",
+      "質問をナレッジに照らし、記述があれば答え、無ければ答えないという分岐の図",
   },
   {
     title: "AI LINK CRAFT オフィシャルサイト",
     name: "yurushiro-site",
     description:
-      "このサイトのリポジトリ。実績データを追記するだけでページとsitemapが増える構成にしています。",
-    reason:
-      "更新が止まらないサイトにするには、書く手間をどこまで減らせるかが要になると考え、データ駆動の構造を試した場所です。",
+      "このサイトのリポジトリ。データを追記するだけでページが増える構成。",
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
     thumbnail: "/images/repo-yurushiro-site.png",
     thumbnailAlt: "AI LINK CRAFT オフィシャルサイトのトップページ",
