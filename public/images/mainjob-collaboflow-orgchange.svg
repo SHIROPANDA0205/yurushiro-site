@@ -1,72 +1,131 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-label="分社化による組織改編に合わせて、コラボフローのワークフローを改修したことを表した図">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" role="img" aria-label="分社化により組織が2つに分かれたことに伴い、コラボフローの承認経路を新しい組織に合わせて組み替えたことを表した図">
   <defs>
-    <linearGradient id="brand" x1="0" y1="1" x2="1" y2="0">
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0%" stop-color="#3B6FE0"/>
-      <stop offset="55%" stop-color="#8B4FE0"/>
       <stop offset="100%" stop-color="#0EA5C4"/>
     </linearGradient>
-    <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#F7F8FB"/>
-      <stop offset="100%" stop-color="#FFFFFF"/>
+    <linearGradient id="paper" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F7F8FB"/>
     </linearGradient>
-    <pattern id="grid" width="44" height="44" patternUnits="userSpaceOnUse">
-      <path d="M44 0H0V44" fill="none" stroke="#0F1222" stroke-opacity="0.05" stroke-width="1"/>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#0F1222" stroke-opacity="0.04" stroke-width="1"/>
     </pattern>
-    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#8B4FE0" stop-opacity="0.16"/>
-      <stop offset="100%" stop-color="#8B4FE0" stop-opacity="0"/>
-    </radialGradient>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#8B4FE0"/>
+    </marker>
+    <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#A9B2C0"/>
+    </marker>
   </defs>
 
-  <rect width="1600" height="900" fill="url(#fade)"/>
-  <rect width="1600" height="900" fill="url(#grid)"/>
-  <ellipse cx="800" cy="430" rx="520" ry="320" fill="url(#glow)"/>
+  <rect width="1600" height="1000" fill="url(#paper)"/>
+  <rect width="1600" height="1000" fill="url(#grid)"/>
 
-  <!-- 左：分社化・組織改編 -->
+  <text x="80" y="100" font-family="system-ui, -apple-system, sans-serif" font-size="46" font-weight="800" fill="#0F1222">分社化に合わせて、承認の流れを組み替える</text>
+  <rect x="80" y="128" width="120" height="5" rx="2.5" fill="url(#g1)"/>
+
+  <!-- ============ 左：組織が分かれる ============ -->
+  <text x="80" y="204" font-family="ui-monospace, monospace" font-size="24" font-weight="600" fill="#0EA5C4" letter-spacing="4">ORGANIZATION</text>
+
   <g>
-    <rect x="90" y="230" width="380" height="380" rx="28" fill="#0F1222"/>
-    <rect x="150" y="300" width="120" height="88" rx="16" fill="#3B6FE0"/>
-    <rect x="290" y="300" width="120" height="88" rx="16" fill="#8B4FE0"/>
-    <rect x="150" y="408" width="260" height="72" rx="16" fill="#FFFFFF" fill-opacity="0.12"/>
-    <text x="280" y="530" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="34" font-weight="800" fill="#FFFFFF">組織改編</text>
-    <text x="280" y="574" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="24" fill="#8A90A6">分社化に伴う変更</text>
+    <!-- 分社化前 -->
+    <rect x="80" y="240" width="240" height="130" rx="16" fill="#FFFFFF" stroke="#DDE2E8" stroke-width="2"/>
+    <text x="200" y="298" text-anchor="middle" font-family="system-ui, sans-serif" font-size="24" fill="#8A90A6">分社化 前</text>
+    <text x="200" y="342" text-anchor="middle" font-family="system-ui, sans-serif" font-size="32" font-weight="700" fill="#0F1222">1つの組織</text>
+
+    <!-- 分岐 -->
+    <path d="M330 305 H392" stroke="#8B4FE0" stroke-width="6" stroke-linecap="round"/>
+    <path d="M392 305 V240" stroke="#8B4FE0" stroke-width="6" stroke-linecap="round"/>
+    <path d="M392 305 V370" stroke="#8B4FE0" stroke-width="6" stroke-linecap="round"/>
+    <path d="M392 240 H448" stroke="#8B4FE0" stroke-width="6" stroke-linecap="round" marker-end="url(#ar)"/>
+    <path d="M392 370 H448" stroke="#8B4FE0" stroke-width="6" stroke-linecap="round" marker-end="url(#ar)"/>
+
+    <!-- 分社化後 -->
+    <rect x="480" y="196" width="230" height="90" rx="14" fill="#F3EEFC" stroke="#C9B4EE" stroke-width="3"/>
+    <text x="595" y="250" text-anchor="middle" font-family="system-ui, sans-serif" font-size="28" font-weight="700" fill="#5E3AA8">新会社 A</text>
+
+    <rect x="480" y="326" width="230" height="90" rx="14" fill="#F3EEFC" stroke="#C9B4EE" stroke-width="3"/>
+    <text x="595" y="380" text-anchor="middle" font-family="system-ui, sans-serif" font-size="28" font-weight="700" fill="#5E3AA8">新会社 B</text>
   </g>
 
-  <!-- 中央：コラボフロー -->
+  <!-- ============ 右：QA表で認識を揃える ============ -->
   <g>
-    <rect x="530" y="230" width="540" height="380" rx="28" fill="#FFFFFF" stroke="#0F1222" stroke-opacity="0.10" stroke-width="2"/>
-    <text x="800" y="292" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="26" font-weight="700" fill="#5A6178">既存ワークフローの改修</text>
+    <text x="820" y="204" font-family="ui-monospace, monospace" font-size="24" font-weight="600" fill="#0EA5C4" letter-spacing="4">ALIGNMENT</text>
 
-    <rect x="570" y="326" width="460" height="120" rx="22" fill="url(#brand)"/>
-    <text x="800" y="400" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="40" font-weight="800" fill="#FFFFFF">コラボフロー</text>
-
-    <rect x="570" y="470" width="214" height="88" rx="22" fill="#0F1222"/>
-    <text x="677" y="524" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="24" font-weight="700" fill="#FFFFFF">設計〜テスト</text>
-
-    <rect x="808" y="470" width="222" height="88" rx="22" fill="#F7F8FB" stroke="#0F1222" stroke-opacity="0.08" stroke-width="2"/>
-    <text x="919" y="524" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="24" font-weight="700" fill="#0F1222">レビュー対応</text>
+    <rect x="820" y="240" width="700" height="176" rx="18" fill="#FFFFFF" stroke="#DDE2E8" stroke-width="2"/>
+    <text x="852" y="296" font-family="system-ui, sans-serif" font-size="30" font-weight="700" fill="#0F1222">QA表を自ら作って展開</text>
+    <text x="852" y="340" font-family="system-ui, sans-serif" font-size="24" fill="#5A6178">確認事項が多く、認識のずれが起きやすい案件だったため</text>
+    <text x="852" y="378" font-family="system-ui, sans-serif" font-size="24" fill="#5A6178">改修より先に、お客様と認識を揃える仕組みを置いた</text>
   </g>
 
-  <!-- 右：改修後 -->
-  <g>
-    <rect x="1130" y="250" width="380" height="340" rx="28" fill="url(#brand)"/>
-    <circle cx="1248" cy="370" r="28" fill="#FFFFFF" fill-opacity="0.22"/>
-    <circle cx="1320" cy="370" r="28" fill="#FFFFFF" fill-opacity="0.22"/>
-    <circle cx="1392" cy="370" r="28" fill="#FFFFFF" fill-opacity="0.22"/>
-    <path d="M1276 370 H1292" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round"/>
-    <path d="M1348 370 H1364" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round"/>
-    <text x="1320" y="500" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="34" font-weight="800" fill="#FFFFFF">新しい流れ</text>
-    <text x="1320" y="544" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="24" fill="#FFFFFF" fill-opacity="0.86">改編後の組織に適合</text>
+  <!-- ============ 中央下：承認フローの組み替え ============ -->
+  <text x="80" y="492" font-family="ui-monospace, monospace" font-size="24" font-weight="600" fill="#0EA5C4" letter-spacing="4">WORKFLOW</text>
+
+  <!-- BEFORE -->
+  <g opacity="0.55">
+    <text x="80" y="552" font-family="system-ui, sans-serif" font-size="24" fill="#8A90A6">改修前の承認経路</text>
+    <g>
+      <rect x="80" y="574" width="180" height="66" rx="12" fill="#FFFFFF" stroke="#DDE2E8" stroke-width="2"/>
+      <text x="170" y="616" text-anchor="middle" font-family="system-ui, sans-serif" font-size="24" fill="#5A6178">申請</text>
+      <path d="M270 607 H318" stroke="#A9B2C0" stroke-width="4" marker-end="url(#arg)"/>
+
+      <rect x="338" y="574" width="180" height="66" rx="12" fill="#FFFFFF" stroke="#DDE2E8" stroke-width="2"/>
+      <text x="428" y="616" text-anchor="middle" font-family="system-ui, sans-serif" font-size="24" fill="#5A6178">課長</text>
+      <path d="M528 607 H576" stroke="#A9B2C0" stroke-width="4" marker-end="url(#arg)"/>
+
+      <rect x="596" y="574" width="180" height="66" rx="12" fill="#FFFFFF" stroke="#DDE2E8" stroke-width="2"/>
+      <text x="686" y="616" text-anchor="middle" font-family="system-ui, sans-serif" font-size="24" fill="#5A6178">部長</text>
+      <path d="M786 607 H834" stroke="#A9B2C0" stroke-width="4" marker-end="url(#arg)"/>
+
+      <rect x="854" y="574" width="180" height="66" rx="12" fill="#FFFFFF" stroke="#DDE2E8" stroke-width="2"/>
+      <text x="944" y="616" text-anchor="middle" font-family="system-ui, sans-serif" font-size="24" fill="#5A6178">完了</text>
+    </g>
   </g>
 
-  <g font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="30" fill="#5A6178" text-anchor="middle">
-    <path d="M100 700 H1500" stroke="#0F1222" stroke-opacity="0.08" stroke-width="2"/>
-    <circle cx="210" cy="783" r="7" fill="#3B6FE0"/>
-    <text x="250" y="795" text-anchor="start">QA表で認識合わせ</text>
-    <circle cx="680" cy="783" r="7" fill="#8B4FE0"/>
-    <text x="720" y="795" text-anchor="start">代替リーダー</text>
-    <circle cx="1100" cy="783" r="7" fill="#0EA5C4"/>
-    <text x="1140" y="795" text-anchor="start">進捗管理</text>
+  <!-- AFTER -->
+  <g>
+    <text x="80" y="700" font-family="system-ui, sans-serif" font-size="24" font-weight="700" fill="#5E3AA8">改修後の承認経路</text>
+    <g>
+      <rect x="80" y="722" width="180" height="66" rx="12" fill="#FFFFFF" stroke="#C9B4EE" stroke-width="3"/>
+      <text x="170" y="764" text-anchor="middle" font-family="system-ui, sans-serif" font-size="24" font-weight="700" fill="#0F1222">申請</text>
+      <path d="M270 755 H318" stroke="#8B4FE0" stroke-width="5" marker-end="url(#ar)"/>
+
+      <rect x="338" y="722" width="220" height="66" rx="12" fill="#F3EEFC" stroke="#8B4FE0" stroke-width="3"/>
+      <text x="448" y="764" text-anchor="middle" font-family="system-ui, sans-serif" font-size="24" font-weight="700" fill="#5E3AA8">所属会社の判定</text>
+      <path d="M568 755 H616" stroke="#8B4FE0" stroke-width="5" marker-end="url(#ar)"/>
+
+      <rect x="636" y="722" width="220" height="66" rx="12" fill="#FFFFFF" stroke="#C9B4EE" stroke-width="3"/>
+      <text x="746" y="764" text-anchor="middle" font-family="system-ui, sans-serif" font-size="24" font-weight="700" fill="#0F1222">新組織の承認者</text>
+      <path d="M866 755 H914" stroke="#8B4FE0" stroke-width="5" marker-end="url(#ar)"/>
+
+      <rect x="934" y="722" width="180" height="66" rx="12" fill="#FFFFFF" stroke="#C9B4EE" stroke-width="3"/>
+      <text x="1024" y="764" text-anchor="middle" font-family="system-ui, sans-serif" font-size="24" font-weight="700" fill="#0F1222">完了</text>
+    </g>
+
+    <!-- 担当範囲 -->
+    <rect x="1170" y="574" width="350" height="214" rx="18" fill="#FFFFFF" stroke="#DDE2E8" stroke-width="2"/>
+    <text x="1202" y="624" font-family="system-ui, sans-serif" font-size="24" fill="#8A90A6">担当した範囲</text>
+    <g font-family="system-ui, sans-serif" font-size="26" fill="#0F1222">
+      <text x="1202" y="672">設計書の修正</text>
+      <text x="1202" y="712">実装・単体テスト</text>
+      <text x="1202" y="752">お客様レビュー対応</text>
+    </g>
+  </g>
+
+  <!-- 下段 -->
+  <line x1="80" y1="830" x2="1520" y2="830" stroke="#0F1222" stroke-opacity="0.09" stroke-width="2"/>
+  <g font-family="system-ui, sans-serif">
+    <text x="80" y="888" font-family="ui-monospace, monospace" font-size="24" fill="#8A90A6">期間</text>
+    <text x="80" y="934" font-size="30" font-weight="700" fill="#0F1222">2026.02 – 2026.06</text>
+
+    <text x="480" y="888" font-family="ui-monospace, monospace" font-size="24" fill="#8A90A6">規模</text>
+    <text x="480" y="934" font-size="30" font-weight="700" fill="#0F1222">チーム12名</text>
+
+    <text x="880" y="888" font-family="ui-monospace, monospace" font-size="24" fill="#8A90A6">立場</text>
+    <text x="880" y="934" font-size="30" font-weight="700" fill="#0F1222">代替リーダー</text>
+
+    <text x="1240" y="888" font-family="ui-monospace, monospace" font-size="24" fill="#8A90A6">技術</text>
+    <text x="1240" y="934" font-size="30" font-weight="700" fill="#0F1222">コラボフロー / Backlog</text>
   </g>
 </svg>

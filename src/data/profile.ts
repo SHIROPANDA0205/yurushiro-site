@@ -132,6 +132,10 @@ export const profile = {
         "Microsoft Certified: Azure Fundamentals",
       ],
     },
+    {
+      label: "ビジネス・その他",
+      items: ["日商簿記検定 3級", "危険物取扱者 乙種第4類"],
+    },
   ] as CertificationGroup[],
 };
 

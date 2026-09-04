@@ -1,68 +1,123 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-label="データ基盤刷新のテストフェーズで、JP1とDataSpiderを用いて検証と改修を行うことを表した図">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" role="img" aria-label="100名を超える大規模なデータ基盤刷新にテストフェーズから参画し、テスト実行から不具合の検出、修正、再テストのサイクルを回したことを表した図">
   <defs>
-    <linearGradient id="brand" x1="0" y1="1" x2="1" y2="0">
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0%" stop-color="#3B6FE0"/>
-      <stop offset="55%" stop-color="#8B4FE0"/>
       <stop offset="100%" stop-color="#0EA5C4"/>
     </linearGradient>
-    <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#F7F8FB"/>
-      <stop offset="100%" stop-color="#FFFFFF"/>
+    <linearGradient id="paper" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F7F8FB"/>
     </linearGradient>
-    <pattern id="grid" width="44" height="44" patternUnits="userSpaceOnUse">
-      <path d="M44 0H0V44" fill="none" stroke="#0F1222" stroke-opacity="0.05" stroke-width="1"/>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#0F1222" stroke-opacity="0.04" stroke-width="1"/>
     </pattern>
-    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#0EA5C4" stop-opacity="0.16"/>
-      <stop offset="100%" stop-color="#0EA5C4" stop-opacity="0"/>
-    </radialGradient>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#3B6FE0"/>
+    </marker>
   </defs>
 
-  <rect width="1600" height="900" fill="url(#fade)"/>
-  <rect width="1600" height="900" fill="url(#grid)"/>
-  <ellipse cx="800" cy="430" rx="520" ry="320" fill="url(#glow)"/>
+  <rect width="1600" height="1000" fill="url(#paper)"/>
+  <rect width="1600" height="1000" fill="url(#grid)"/>
 
+  <text x="80" y="100" font-family="system-ui, -apple-system, sans-serif" font-size="46" font-weight="800" fill="#0F1222">大規模刷新のテストを回し、見つけた箇所を直す</text>
+  <rect x="80" y="128" width="120" height="5" rx="2.5" fill="url(#g1)"/>
+
+  <!-- ============ 左：規模と参画のしかた ============ -->
   <g>
-    <rect x="90" y="210" width="360" height="420" rx="28" fill="#0F1222"/>
-    <ellipse cx="270" cy="310" rx="92" ry="28" fill="#3B6FE0"/>
-    <rect x="178" y="310" width="184" height="70" fill="#3B6FE0"/>
-    <ellipse cx="270" cy="380" rx="92" ry="28" fill="#2A58C4"/>
-    <ellipse cx="270" cy="400" rx="92" ry="28" fill="#8B4FE0"/>
-    <rect x="178" y="400" width="184" height="70" fill="#8B4FE0"/>
-    <ellipse cx="270" cy="470" rx="92" ry="28" fill="#6E3CC0"/>
-    <text x="270" y="560" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="36" font-weight="800" fill="#FFFFFF">データ基盤</text>
-    <text x="270" y="604" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="26" fill="#8A90A6">刷新対象</text>
+    <text x="80" y="212" font-family="ui-monospace, monospace" font-size="24" font-weight="600" fill="#0EA5C4" letter-spacing="4">SCALE</text>
+
+    <rect x="80" y="248" width="400" height="392" rx="18" fill="#FFFFFF" stroke="#DDE2E8" stroke-width="2"/>
+
+    <text x="112" y="316" font-family="system-ui, sans-serif" font-size="30" fill="#5A6178">プロジェクト全体</text>
+    <text x="112" y="382" font-family="system-ui, sans-serif" font-size="58" font-weight="800" fill="#0F1222">100名以上</text>
+
+    <!-- 人数感を点で表す -->
+    <g fill="#C6D2E6">
+      <circle cx="126" cy="440" r="9"/><circle cx="160" cy="440" r="9"/><circle cx="194" cy="440" r="9"/>
+      <circle cx="228" cy="440" r="9"/><circle cx="262" cy="440" r="9"/><circle cx="296" cy="440" r="9"/>
+      <circle cx="330" cy="440" r="9"/><circle cx="364" cy="440" r="9"/><circle cx="398" cy="440" r="9"/>
+      <circle cx="432" cy="440" r="9"/>
+      <circle cx="126" cy="478" r="9"/><circle cx="160" cy="478" r="9"/><circle cx="194" cy="478" r="9"/>
+      <circle cx="228" cy="478" r="9"/><circle cx="262" cy="478" r="9"/><circle cx="296" cy="478" r="9"/>
+      <circle cx="330" cy="478" r="9"/><circle cx="364" cy="478" r="9"/><circle cx="398" cy="478" r="9"/>
+      <circle cx="432" cy="478" r="9"/>
+    </g>
+    <!-- 自分の位置 -->
+    <circle cx="126" cy="516" r="12" fill="#3B6FE0"/>
+    <text x="156" y="526" font-family="system-ui, sans-serif" font-size="26" fill="#2E4E86">自分（テストフェーズから参画）</text>
+
+    <rect x="112" y="562" width="336" height="54" rx="10" fill="#FFF4F2" stroke="#E8896B" stroke-width="2"/>
+    <text x="140" y="597" font-family="system-ui, sans-serif" font-size="24" fill="#B44E19">経緯は途中から把握していった</text>
   </g>
 
+  <!-- ============ 中央：検証サイクル ============ -->
   <g>
-    <rect x="520" y="230" width="560" height="380" rx="28" fill="#FFFFFF" stroke="#0F1222" stroke-opacity="0.10" stroke-width="2"/>
-    <text x="800" y="290" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="28" font-weight="700" fill="#5A6178">テストフェーズ</text>
+    <text x="560" y="212" font-family="ui-monospace, monospace" font-size="24" font-weight="600" fill="#0EA5C4" letter-spacing="4">CYCLE</text>
 
-    <rect x="560" y="330" width="220" height="120" rx="22" fill="url(#brand)"/>
-    <text x="670" y="402" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="48" font-weight="800" fill="#FFFFFF" letter-spacing="2">JP1</text>
+    <!-- 4つの工程 -->
+    <g>
+      <rect x="560" y="272" width="220" height="82" rx="12" fill="#FFFFFF" stroke="#C6D6F2" stroke-width="3"/>
+      <text x="670" y="322" text-anchor="middle" font-family="system-ui, sans-serif" font-size="28" font-weight="700" fill="#0F1222">テスト実行</text>
 
-    <rect x="820" y="330" width="220" height="120" rx="22" fill="#0F1222"/>
-    <text x="930" y="390" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="30" font-weight="800" fill="#FFFFFF">テスト実行</text>
-    <text x="930" y="426" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="22" fill="#8A90A6">セキュリティ準拠</text>
+      <rect x="880" y="272" width="220" height="82" rx="12" fill="#FFFFFF" stroke="#C6D6F2" stroke-width="3"/>
+      <text x="990" y="322" text-anchor="middle" font-family="system-ui, sans-serif" font-size="28" font-weight="700" fill="#0F1222">不具合の検出</text>
 
-    <rect x="560" y="480" width="480" height="88" rx="22" fill="#F7F8FB" stroke="#0F1222" stroke-opacity="0.08" stroke-width="2"/>
-    <text x="800" y="534" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="28" font-weight="700" fill="#0F1222">実行 → 改修 → 再テスト</text>
+      <rect x="880" y="558" width="220" height="82" rx="12" fill="#EEF3FB" stroke="#3B6FE0" stroke-width="3"/>
+      <text x="990" y="608" text-anchor="middle" font-family="system-ui, sans-serif" font-size="28" font-weight="700" fill="#2E4E86">修正</text>
+
+      <rect x="560" y="558" width="220" height="82" rx="12" fill="#FFFFFF" stroke="#C6D6F2" stroke-width="3"/>
+      <text x="670" y="608" text-anchor="middle" font-family="system-ui, sans-serif" font-size="28" font-weight="700" fill="#0F1222">再テスト</text>
+    </g>
+
+    <!-- 循環の矢印 -->
+    <g stroke="#3B6FE0" stroke-width="5" fill="none" marker-end="url(#ar)">
+      <path d="M790 313 H868"/>
+      <path d="M990 366 V546"/>
+      <path d="M870 599 H792"/>
+      <path d="M670 546 V366"/>
+    </g>
+
+    <text x="830" y="450" text-anchor="middle" font-family="system-ui, sans-serif" font-size="24" fill="#8A90A6">繰り返す</text>
+
+    <!-- テストルームの条件 -->
+    <rect x="560" y="672" width="540" height="66" rx="12" fill="#F4F7FC" stroke="#DDE2E8" stroke-width="2"/>
+    <text x="588" y="713" font-family="system-ui, sans-serif" font-size="26" fill="#5A6178">お客様先のセキュリティルールに従い、所定のテストルームで実施</text>
   </g>
 
+  <!-- ============ 右：修正で触れた範囲 ============ -->
   <g>
-    <rect x="1150" y="290" width="360" height="260" rx="64" fill="url(#brand)"/>
-    <text x="1330" y="420" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="42" font-weight="800" fill="#FFFFFF">DataSpider</text>
-    <text x="1330" y="468" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="26" fill="#FFFFFF" fill-opacity="0.86">ETL / 改修対応</text>
+    <text x="1180" y="212" font-family="ui-monospace, monospace" font-size="24" font-weight="600" fill="#0EA5C4" letter-spacing="4">FIXED</text>
+
+    <rect x="1180" y="248" width="340" height="392" rx="18" fill="#FFFFFF" stroke="#DDE2E8" stroke-width="2"/>
+    <text x="1212" y="308" font-family="system-ui, sans-serif" font-size="26" fill="#5A6178">修正で触れた範囲</text>
+
+    <g>
+      <rect x="1212" y="336" width="276" height="70" rx="10" fill="url(#g1)"/>
+      <text x="1350" y="380" text-anchor="middle" font-family="system-ui, sans-serif" font-size="28" font-weight="700" fill="#FFFFFF">DataSpider</text>
+
+      <rect x="1212" y="422" width="276" height="70" rx="10" fill="#F4F7FC" stroke="#DDE2E8" stroke-width="2"/>
+      <text x="1350" y="466" text-anchor="middle" font-family="system-ui, sans-serif" font-size="28" fill="#0F1222">C#</text>
+
+      <rect x="1212" y="508" width="276" height="70" rx="10" fill="#F4F7FC" stroke="#DDE2E8" stroke-width="2"/>
+      <text x="1350" y="552" text-anchor="middle" font-family="system-ui, sans-serif" font-size="26" fill="#0F1222">ストアドプロシージャ</text>
+    </g>
+
+    <text x="1212" y="612" font-family="system-ui, sans-serif" font-size="22" fill="#8A90A6">※ 前案件で得た知見が効いた箇所</text>
   </g>
 
-  <g font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="32" fill="#5A6178" text-anchor="middle">
-    <path d="M100 700 H1500" stroke="#0F1222" stroke-opacity="0.08" stroke-width="2"/>
-    <circle cx="250" cy="783" r="7" fill="#3B6FE0"/>
-    <text x="290" y="795" text-anchor="start">セキュリティ準拠</text>
-    <circle cx="680" cy="783" r="7" fill="#8B4FE0"/>
-    <text x="720" y="795" text-anchor="start">修正対応</text>
-    <circle cx="1060" cy="783" r="7" fill="#0EA5C4"/>
-    <text x="1100" y="795" text-anchor="start">ベンダー間連携</text>
+  <!-- 下段 -->
+  <line x1="80" y1="810" x2="1520" y2="810" stroke="#0F1222" stroke-opacity="0.09" stroke-width="2"/>
+  <g font-family="system-ui, sans-serif">
+    <text x="80" y="878" font-family="ui-monospace, monospace" font-size="24" fill="#8A90A6">期間</text>
+    <text x="80" y="924" font-size="30" font-weight="700" fill="#0F1222">2024.04 – 2024.12</text>
+
+    <text x="480" y="878" font-family="ui-monospace, monospace" font-size="24" fill="#8A90A6">規模</text>
+    <text x="480" y="924" font-size="30" font-weight="700" fill="#0F1222">全体100名以上</text>
+
+    <text x="880" y="878" font-family="ui-monospace, monospace" font-size="24" fill="#8A90A6">立場</text>
+    <text x="880" y="924" font-size="30" font-weight="700" fill="#0F1222">現場リーダー</text>
+
+    <text x="1240" y="878" font-family="ui-monospace, monospace" font-size="24" fill="#8A90A6">技術</text>
+    <text x="1240" y="924" font-size="30" font-weight="700" fill="#0F1222">JP1 / DataSpider</text>
   </g>
 </svg>

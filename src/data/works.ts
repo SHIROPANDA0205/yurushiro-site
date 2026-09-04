@@ -22,8 +22,15 @@ export type Work = {
   /** クライアント名。非公開の場合は書かない */
   client?: string;
   role: string[];
+  /**
+   * その案件での立場。例: "実装メンバー" "現場リーダー"。
+   * 一覧で役割の変化を見せるために、role とは別に1つだけ立てている。
+   */
+  position?: string;
   /** 規模感。例: "チーム8名 ／ 担当画面12件"。顧客名を出さずに実力を伝えるために使う */
   scale?: string;
+  /** 前の案件から持ち越したもの。時系列で並べたときのつながりを示す1文 */
+  carryOver?: string;
   tech: string[];
   thumbnail: string | null;
   thumbnailAlt?: string;

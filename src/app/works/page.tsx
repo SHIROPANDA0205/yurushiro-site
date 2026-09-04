@@ -3,6 +3,7 @@ import { Briefcase } from "lucide-react";
 import PageHeader from "@/components/layout/PageHeader";
 import Reveal from "@/components/ui/Reveal";
 import WorkCard from "@/components/ui/WorkCard";
+import DayJobTimeline from "@/components/sections/DayJobTimeline";
 import SectionTitle from "@/components/ui/SectionTitle";
 import CTA from "@/components/sections/CTA";
 import { works } from "@/data/works";
@@ -60,19 +61,11 @@ export default function WorksPage() {
           <SectionTitle
             eyebrow="MAIN JOB"
             title="本業での実績"
-            lead="会社員として担当した業務のうち、公開できる範囲のものです。顧客名・システム名は記載していません。"
+            lead="会社員として担当した業務のうち、公開できる範囲のものです。顧客名・システム名は記載していません。担当した立場の変化が分かるよう、古い順に並べています。"
           />
 
           {dayJobWorks.length > 0 ? (
-            <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {dayJobWorks.map((work, index) => (
-                <li key={work.slug}>
-                  <Reveal delay={index * 0.06} className="h-full">
-                    <WorkCard work={work} />
-                  </Reveal>
-                </li>
-              ))}
-            </ul>
+            <DayJobTimeline works={dayJobWorks} />
           ) : (
             <Reveal>
               <div className="flex items-start gap-4 rounded-card border border-dashed border-line-strong bg-bg p-6 sm:p-8">

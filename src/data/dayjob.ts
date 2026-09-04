@@ -51,6 +51,7 @@ export const dayJobWorks: Work[] = [
       "商社のお客様における、分社化に伴う組織改編の案件です。既存で利用していたコラボフローも、新しい組織に合わせて直す必要がありました。設計書の修正から実装、単体テストの作成・実施、お客様からのレビュー対応までを担当し、完遂しました。",
     period: "2026.02 – 2026.06",
     role: ["設計書修正", "実装", "単体テスト", "レビュー対応", "代替リーダー"],
+    position: "代替リーダー",
     scale: "チーム12名 ／ 約5ヶ月",
     tech: ["コラボフロー", "Backlog"],
     thumbnail: "/images/mainjob-collaboflow-orgchange.svg",
@@ -95,7 +96,10 @@ export const dayJobWorks: Work[] = [
       "大手商社の業務システムを、ローコードで内製する案件です。初めてのWebアプリ開発として参画し、東京側のリーダーとして、外部パートナーのとりまとめも担当しました。お客様が利用していたSaaSの人事システムを解析し、Webアプリとしてゼロから実装しました。",
     period: "2025.01 – 2025.07",
     role: ["東京側リーダー", "開発", "進捗管理", "パートナーとりまとめ"],
+    position: "東京側リーダー",
     scale: "チーム15名 ／ 約7ヶ月",
+    carryOver:
+      "初めてのWebアプリ開発。開発に加えて、外部パートナーのとりまとめまで担った。",
     tech: ["OutSystems", "JavaScript", "Forge", "Backlog"],
     thumbnail: "/images/mainjob-outsystems-webapp.svg",
     thumbnailAlt:
@@ -140,7 +144,10 @@ export const dayJobWorks: Work[] = [
       "金融機関におけるデータ基盤の刷新案件に、テストフェーズから参画しました。お客様先のセキュリティルールに沿って\u200bテストを実施し、前案件で得たDataSpiderの知見を活かした\u200b修正対応や、現場でのベンダー間連携も担当しました。",
     period: "2024.04 – 2024.12",
     role: ["テスト実施", "改修対応", "現場リーダー", "ベンダー間連携"],
+    position: "現場リーダー",
     scale: "プロジェクト全体100名以上",
+    carryOver:
+      "前案件で覚えた DataSpider が、この案件の修正対応でそのまま武器になった。",
     tech: ["DataSpider", "JP1", "C#", "SQL", "ストアドプロシージャ"],
     thumbnail: "/images/mainjob-jp1-dataspider-test.svg",
     thumbnailAlt:
@@ -183,6 +190,7 @@ export const dayJobWorks: Work[] = [
       "長年COBOLで動いてきたデータ処理を、ETLツール（DataSpider）へ置き換える\u200b案件です。既存仕様の調査から結合テストまでを担当しました。",
     period: "2023.08 – 2024.04",
     role: ["仕様調査", "詳細設計", "実装", "単体テスト", "結合テスト"],
+    position: "実装メンバー",
     scale: "チーム8名 ／ 約9ヶ月",
     tech: ["DataSpider", "SQL", "COBOL（仕様調査）"],
     thumbnail: "/images/mainjob-cobol-etl.svg",
