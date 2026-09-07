@@ -181,6 +181,12 @@ export const learnings: Learning[] = [
     completedAt: "2026.09",
     category: "その他",
   },
+  {
+    title:
+      "【初心者向け】APIとは何か？1時間で開発やマーケティングでAPIが活用される理由と事例を紹介！",
+    provider: "Udemy",
+    category: "その他",
+  },
 ];
 
 /** 受講年月がある講座を新しい順に。無いものは後ろへ回す */
