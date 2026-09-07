@@ -161,7 +161,7 @@ export const learnings: Learning[] = [
     title:
       "ゼロから始めるAPI超入門：Web技術の基礎からAPIの活用事例までを学び、実際にAPIを体験できる短期集中コース",
     provider: "Udemy",
-    category: "プログラミング",
+    category: "その他",
   },
   {
     title: "【最短合格】動画で学ぶ！PL-900完全攻略講座｜模擬テスト付き",
