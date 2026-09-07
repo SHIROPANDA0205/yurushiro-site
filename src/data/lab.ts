@@ -175,6 +175,12 @@ export const learnings: Learning[] = [
     category: "インフラ・クラウド",
     applied: "Microsoft Certified: Azure Fundamentals の取得",
   },
+  {
+    title: "これだけは知っておきたい！皆が知っているメジャーなシステム～大企業向け～",
+    provider: "Udemy",
+    completedAt: "2026.09",
+    category: "その他",
+  },
 ];
 
 /** 受講年月がある講座を新しい順に。無いものは後ろへ回す */
