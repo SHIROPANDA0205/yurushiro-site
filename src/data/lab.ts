@@ -53,6 +53,16 @@ export type Repository = {
 
 export const repositories: Repository[] = [
   {
+    title: "画像検索AI",
+    name: "image-search-ai",
+    description:
+      "建物の写真をタワー図鑑のナレッジと照合し、確信があるときだけ名称と所在地を返す。",
+    tech: ["Dify", "OpenAI API", "RAG", "プロンプト設計"],
+    thumbnail: "/images/repo-image-search-ai.svg",
+    thumbnailAlt:
+      "建物の写真をナレッジのタワーと照合し、一致すれば答え、確信がなければ答えないという流れの図",
+  },
+  {
     title: "金沢観光案内AIチャットボット",
     name: "kanazawa-tourism-ai-chatbot",
     description:
