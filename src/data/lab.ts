@@ -203,6 +203,12 @@ export const learnings: Learning[] = [
     completedAt: "2026.09",
     category: "その他",
   },
+  {
+    title: "REST WebAPI サービス 設計",
+    provider: "Udemy",
+    completedAt: "2026.09",
+    category: "その他",
+  },
 ];
 
 /** 受講年月がある講座を新しい順に。無いものは後ろへ回す */
