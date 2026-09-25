@@ -171,11 +171,17 @@ export const learnings: Learning[] = [
     title:
       "ゼロから始めるAPI超入門：Web技術の基礎からAPIの活用事例までを学び、実際にAPIを体験できる短期集中コース",
     provider: "Udemy",
-    category: "その他",
+    category: "プログラミング",
   },
   {
     title: "【最短合格】動画で学ぶ！PL-900完全攻略講座｜模擬テスト付き",
     provider: "Udemy",
+    category: "ローコード",
+  },
+  {
+    title: "Salesforce完全入門-認定アドミニストレーター(Salesforce Admin)",
+    provider: "Udemy",
+    completedAt: "2026.09",
     category: "ローコード",
   },
   {
@@ -195,19 +201,19 @@ export const learnings: Learning[] = [
     title:
       "【初心者向け】APIとは何か？1時間で開発やマーケティングでAPIが活用される理由と事例を紹介！",
     provider: "Udemy",
-    category: "その他",
+    category: "プログラミング",
   },
   {
     title: "Git：はじめてのGitとGitHub",
     provider: "Udemy",
     completedAt: "2026.09",
-    category: "その他",
+    category: "プログラミング",
   },
   {
     title: "REST WebAPI サービス 設計",
     provider: "Udemy",
     completedAt: "2026.09",
-    category: "その他",
+    category: "プログラミング",
   },
 ];
 
