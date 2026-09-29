@@ -209,6 +209,13 @@ export const learnings: Learning[] = [
     completedAt: "2026.09",
     category: "その他",
   },
+  {
+    title:
+      "【SOA-03】AWSトップ講師によるAWS認定CloudOpsエンジニア・アソシエイト模擬試験問題集（6回分375問）",
+    provider: "Udemy",
+    completedAt: "2026.09",
+    category: "インフラ・クラウド",
+  },
 ];
 
 /** 受講年月がある講座を新しい順に。無いものは後ろへ回す */
