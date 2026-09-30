@@ -210,6 +210,12 @@ export const learnings: Learning[] = [
     category: "プログラミング",
   },
   {
+    title: "はじめてのTypeScriptプログラミング入門",
+    provider: "Udemy",
+    completedAt: "2026.09",
+    category: "プログラミング",
+  },
+  {
     title: "REST WebAPI サービス 設計",
     provider: "Udemy",
     completedAt: "2026.09",
