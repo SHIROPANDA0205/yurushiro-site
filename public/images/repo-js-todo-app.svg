@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="1600" height="1000" role="img" aria-label="入力したタスクを未完了と完了に分け、完了・戻す・削除できる流れの図">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#3B6FE0"/>
+      <stop offset="100%" stop-color="#0EA5C4"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="500" fill="#F7F8FB"/>
+
+  <!-- 入力 -->
+  <rect x="48" y="36" width="704" height="88" rx="20" fill="#FFFFFF" stroke="#DDE2E8" stroke-width="4"/>
+  <rect x="72" y="58" width="430" height="44" rx="12" fill="#EEF3FB"/>
+  <rect x="522" y="58" width="200" height="44" rx="12" fill="url(#g)"/>
+  <text x="622" y="88" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="26" font-weight="700" fill="#FFFFFF">追加</text>
+
+  <!-- 未完了 -->
+  <rect x="48" y="156" width="336" height="308" rx="20" fill="#FFFFFF" stroke="#C6D6F2" stroke-width="5"/>
+  <text x="216" y="204" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="700" fill="#2E4E86">未完了</text>
+  <g>
+    <rect x="80" y="232" width="272" height="56" rx="12" fill="#EEF3FB"/>
+    <rect x="96" y="250" width="22" height="22" rx="6" fill="#FFFFFF" stroke="#3B6FE0" stroke-width="3"/>
+    <rect x="132" y="254" width="168" height="14" rx="7" fill="#3B6FE0" opacity=".55"/>
+    <rect x="80" y="304" width="272" height="56" rx="12" fill="#EEF3FB"/>
+    <rect x="96" y="322" width="22" height="22" rx="6" fill="#FFFFFF" stroke="#3B6FE0" stroke-width="3"/>
+    <rect x="132" y="326" width="132" height="14" rx="7" fill="#3B6FE0" opacity=".35"/>
+  </g>
+
+  <path d="M400 310 H430" stroke="url(#g)" stroke-width="10" stroke-linecap="round"/>
+  <path d="M428 292 L456 310 L428 328 z" fill="#0EA5C4"/>
+
+  <!-- 完了 -->
+  <rect x="416" y="156" width="336" height="308" rx="20" fill="#E9F6F0" stroke="#A9DCC6" stroke-width="5"/>
+  <text x="584" y="204" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="700" fill="#1F6B4A">完了</text>
+  <rect x="448" y="232" width="272" height="56" rx="12" fill="#FFFFFF"/>
+  <path d="M468 260 L482 274 L508 244" stroke="#1F6B4A" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="524" y="254" width="160" height="14" rx="7" fill="#1F6B4A" opacity=".45"/>
+</svg>
