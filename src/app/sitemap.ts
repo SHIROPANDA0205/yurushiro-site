@@ -2,11 +2,12 @@ import type { MetadataRoute } from "next";
 import { site } from "@/data/site";
 import { works } from "@/data/works";
 import { dayJobWorks } from "@/data/dayjob";
+import { repositories, repoPath } from "@/data/lab";
 
 /**
  * サイトマップ。
- * 実績の詳細ページは works.ts から自動生成されるため、
- * 実績を追加すればサイトマップにも自動で載ります。
+ * 実績の詳細は works.ts / dayjob.ts から、
+ * Labの作品詳細は lab.ts の repositories から自動で増えます。
  */
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
@@ -54,5 +55,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     }));
 
-  return [...staticPages, ...workPages];
+  const labRepoPages: MetadataRoute.Sitemap = repositories.map((repo) => ({
+    url: `${site.url}${repoPath(repo.name)}`,
+    lastModified,
+    changeFrequency: "monthly",
+    priority: 0.6,
+  }));
+
+  return [...staticPages, ...workPages, ...labRepoPages];
 }

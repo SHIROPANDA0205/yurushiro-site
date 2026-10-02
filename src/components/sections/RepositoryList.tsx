@@ -1,30 +1,22 @@
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import Tag from "@/components/ui/Tag";
 import {
-  githubAccount,
   repositories,
   repositoriesByStack,
+  repoPath,
+  stackAnchor,
   type Repository,
 } from "@/data/lab";
 
 /**
  * 公開しているリポジトリの一覧。
  *
- * 1枚の大きなグリッドに全部並べると、件数が増えたときに
- * 何の作品かが先に見えなくなります。学習記録と同じく、
- * 上に系統ごとの件数、下に系統ごとのカード、という形にしています。
- *
- * カード自体は大きく見せず、広い画面でも3列までにしています。
- * 4列だとサムネが小さくなり、系統見出しの意味が薄れるためです。
- *
- * 見出しと説明は行数で切っています。文章の長さでカードの高さが
- * ばらつくと、増えたときにグリッドが崩れて見えるためです。
- * 説明が2行に収まらない場合は、データ側の文章を短くしてください。
- *
- * 画像は必須にしていません。用意できないリポジトリはグラデーションの
- * プレースホルダで揃うので、画像がある項目と混ざっても破綻しません。
+ * 系統ごとの件数のあとに、左サムネの短いカードを置きます。
+ * 大きな画像は詳細ページへ移し、ここでは「何を作ったか」だけを見せます。
+ * カードを押すと /lab/{name} に進みます。
  */
 export default function RepositoryList() {
   if (repositories.length === 0) {
@@ -84,7 +76,7 @@ export default function RepositoryList() {
                 </span>
               </div>
 
-              <ul className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              <ul className="mt-5 grid gap-3 sm:grid-cols-2">
                 {group.items.map((repo) => (
                   <li key={repo.name}>
                     <RepoCard repo={repo} />
@@ -99,26 +91,20 @@ export default function RepositoryList() {
   );
 }
 
-function stackAnchor(stack: string) {
-  return stack.toLowerCase().replace(/[^a-z0-9]+/g, "-");
-}
-
 function RepoCard({ repo }: { repo: Repository }) {
   return (
-    <a
-      href={repo.url ?? `${githubAccount}/${repo.name}`}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group flex h-full flex-col overflow-hidden rounded-card border border-line bg-bg transition-colors duration-300 hover:border-line-strong"
+    <Link
+      href={repoPath(repo.name)}
+      className="group flex h-full items-start gap-3.5 rounded-card border border-line bg-bg p-3 transition-colors duration-300 hover:border-line-strong sm:p-3.5"
     >
-      <div className="relative aspect-[16/10] overflow-hidden border-b border-line bg-bg-raised">
+      <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-lg border border-line bg-bg-raised sm:h-[4.5rem] sm:w-[4.5rem]">
         {repo.thumbnail ? (
           <Image
             src={repo.thumbnail}
-            alt={repo.thumbnailAlt ?? `${repo.title}の画面`}
+            alt=""
             fill
-            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-            className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+            sizes="72px"
+            className="object-cover"
           />
         ) : (
           <div
@@ -132,31 +118,27 @@ function RepoCard({ repo }: { repo: Repository }) {
         )}
       </div>
 
-      <div className="flex flex-1 flex-col p-4">
+      <div className="min-w-0 flex-1">
         <h4 className="flex items-start gap-1.5 font-display text-[15px] font-bold leading-snug text-fg">
           <span className="line-clamp-2">{repo.title}</span>
-          <ArrowUpRight
+          <ArrowRight
             aria-hidden="true"
-            className="mt-0.5 h-3.5 w-3.5 shrink-0 text-fg-dim transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+            className="mt-0.5 h-3.5 w-3.5 shrink-0 text-fg-dim transition-transform duration-300 group-hover:translate-x-0.5"
           />
         </h4>
 
-        <p className="mt-1.5 truncate font-mono text-[10px] text-fg-dim">
-          {repo.name}
-        </p>
-
-        <p className="mt-2.5 line-clamp-2 text-[13px] leading-relaxed text-fg-muted">
+        <p className="mt-1.5 line-clamp-2 text-[13px] leading-relaxed text-fg-muted">
           {repo.description}
         </p>
 
-        <ul className="mt-auto flex flex-wrap gap-1.5 pt-4">
-          {repo.tech.map((tech) => (
+        <ul className="mt-2.5 flex flex-wrap gap-1.5">
+          {repo.tech.slice(0, 3).map((tech) => (
             <li key={tech}>
               <Tag>{tech}</Tag>
             </li>
           ))}
         </ul>
       </div>
-    </a>
+    </Link>
   );
 }
