@@ -32,6 +32,19 @@ export const practices: Practice[] = [
   },
 ];
 
+/**
+ * ポートフォリオの系統。
+ *
+ * tech はカードに出すタグ、stack は一覧をまとめる見出しです。
+ * タグ全部で分けると「HTML」「RAG」まで欄が増えて見にくくなるので、
+ * 作品の主系統だけをここに置きます。
+ *
+ * 新しい系統が必要になったら、この配列に1行足してください。
+ */
+export const repositoryStacks = ["Dify", "Next.js", "JavaScript"] as const;
+
+export type RepositoryStack = (typeof repositoryStacks)[number];
+
 /** 公開しているリポジトリ */
 export type Repository = {
   /** 作品名。見出しに出るのはこちら */
@@ -39,6 +52,8 @@ export type Repository = {
   /** GitHub上のリポジトリ名。URLの組み立てにも使う */
   name: string;
   description: string;
+  /** 一覧の見出し。repositoryStacks から1つ選ぶ */
+  stack: RepositoryStack;
   tech: string[];
   /** 省略すると githubAccount + name のURLになります */
   url?: string;
@@ -57,6 +72,7 @@ export const repositories: Repository[] = [
     name: "js-todo-app",
     description:
       "追加・完了・戻す・削除を、フレームワークなしのJavaScriptで実装したTODOアプリ。",
+    stack: "JavaScript",
     tech: ["JavaScript", "HTML", "CSS"],
     thumbnail: "/images/repo-js-todo-app.svg",
     thumbnailAlt:
@@ -67,6 +83,7 @@ export const repositories: Repository[] = [
     name: "image-search-ai",
     description:
       "建物の写真をタワー図鑑のナレッジと照合し、確信があるときだけ名称と所在地を返す。",
+    stack: "Dify",
     tech: ["Dify", "OpenAI API", "RAG", "プロンプト設計"],
     thumbnail: "/images/repo-image-search-ai.svg",
     thumbnailAlt:
@@ -77,6 +94,7 @@ export const repositories: Repository[] = [
     name: "kanazawa-tourism-ai-chatbot",
     description:
       "金沢の観光ガイドをナレッジ化し、観光客の質問に答えるRAGチャットボット。",
+    stack: "Dify",
     tech: ["Dify", "OpenAI API", "RAG", "プロンプト設計"],
     thumbnail: "/images/repo-kanazawa-chatbot.svg",
     thumbnailAlt:
@@ -87,11 +105,24 @@ export const repositories: Repository[] = [
     name: "yurushiro-site",
     description:
       "このサイトのリポジトリ。データを追記するだけでページが増える構成。",
+    stack: "Next.js",
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
     thumbnail: "/images/repo-yurushiro-site.png",
     thumbnailAlt: "AI LINK CRAFT オフィシャルサイトのトップページ",
   },
 ];
+
+/**
+ * 系統ごとの一覧。
+ * 0件の系統は出さず、配列 repositoryStacks の順に並べます。
+ * 件数で並び替えると、1件足しただけで見出しの位置が変わるためです。
+ */
+export const repositoriesByStack = repositoryStacks
+  .map((stack) => ({
+    stack,
+    items: repositories.filter((item) => item.stack === stack),
+  }))
+  .filter((group) => group.items.length > 0);
 
 /**
  * 学習の分野。
