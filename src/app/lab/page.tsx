@@ -36,7 +36,7 @@ export default function LabPage() {
           <SectionTitle
             eyebrow="GITHUB"
             title="公開しているポートフォリオ"
-            lead="つくったものはできるかぎり公開しています。技術の系統ごとにまとめています。"
+            lead="つくったものはできるかぎり公開しています。系統ごとにまとめ、詳細は各ページに書いています。"
           />
 
           <RepositoryList />

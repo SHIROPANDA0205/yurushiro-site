@@ -58,13 +58,32 @@ export type Repository = {
   /** 省略すると githubAccount + name のURLになります */
   url?: string;
   /**
-   * 画面のスクリーンショット。public/images/ に置いて "/images/xxx.png" を指定。
+   * 一覧の小さいサムネと、詳細ページのメイン画像。
+   * public/images/ に置いて "/images/xxx.png" を指定。
    * 自分の作品なので実際の画面を載せて構いません（本業の実績とは扱いが違います）。
    * 省略した場合はグラデーションのプレースホルダーが出ます。
    */
   thumbnail?: string | null;
   thumbnailAlt?: string;
+  /** 詳細ページ用。書いた項目だけが出ます。一覧は description だけで足ります */
+  approach?: string[];
+  highlight?: { title: string; body: string }[];
 };
+
+/** 一覧・詳細のURL。name を足すだけでページが増えます */
+export function repoPath(name: string) {
+  return `/lab/${name}`;
+}
+
+/** GitHubのURL。url を省略したらアカウント + name */
+export function repoGithubUrl(repo: Pick<Repository, "name" | "url">) {
+  return repo.url ?? `${githubAccount}/${repo.name}`;
+}
+
+/** 系統見出しのアンカー。件数カードからのジャンプに使う */
+export function stackAnchor(stack: string) {
+  return stack.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+}
 
 export const repositories: Repository[] = [
   {
@@ -77,6 +96,17 @@ export const repositories: Repository[] = [
     thumbnail: "/images/repo-js-todo-app.svg",
     thumbnailAlt:
       "入力したタスクを未完了と完了に分け、完了・戻す・削除できる流れの図",
+    approach: [
+      "入力欄のテキストを未完了リストの項目として追加する",
+      "完了で完了リストへ移し、戻すで未完了リストへ戻す",
+      "削除は未完了リストからその項目だけ取り除く",
+    ],
+    highlight: [
+      {
+        title: "フレームワークなしで操作を組み立てた",
+        body: "追加・完了・戻す・削除を、DOMの生成と付け替えだけで実装しています。ライブラリに頼らず、画面上の要素がどう動くかを追いやすい形にしました。",
+      },
+    ],
   },
   {
     title: "画像検索AI",
@@ -88,6 +118,17 @@ export const repositories: Repository[] = [
     thumbnail: "/images/repo-image-search-ai.svg",
     thumbnailAlt:
       "建物の写真をナレッジのタワーと照合し、一致すれば答え、確信がなければ答えないという流れの図",
+    approach: [
+      "アップロードした建物の画像をナレッジのタワー図鑑と照合する",
+      "明らかに同じものと判断できた場合だけ、名前・所在地・高さ・特徴を返す",
+      "似ている程度では一致とせず、該当なしと回答する",
+    ],
+    highlight: [
+      {
+        title: "一致判定を厳しくした",
+        body: "ナレッジ検索結果だけを根拠にし、モデル自身の知識で補わないようにしています。確信が持てないときは答えない、という分岐を先に決めています。",
+      },
+    ],
   },
   {
     title: "金沢観光案内AIチャットボット",
@@ -99,6 +140,17 @@ export const repositories: Repository[] = [
     thumbnail: "/images/repo-kanazawa-chatbot.svg",
     thumbnailAlt:
       "質問をナレッジに照らし、記述があれば答え、無ければ答えないという分岐の図",
+    approach: [
+      "金沢の観光ガイドをナレッジとして登録し、質問にRAGで答える",
+      "スポット案内や営業時間など、ナレッジにある範囲だけを返す",
+      "ナレッジに無い情報は推測で補わず、答えない",
+    ],
+    highlight: [
+      {
+        title: "ハルシネーションを抑えた",
+        body: "観光案内スタッフとして丁寧に答えつつ、書いていないことは作らないようプロンプトを設計しています。",
+      },
+    ],
   },
   {
     title: "AI LINK CRAFT オフィシャルサイト",
@@ -109,6 +161,17 @@ export const repositories: Repository[] = [
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
     thumbnail: "/images/repo-yurushiro-site.png",
     thumbnailAlt: "AI LINK CRAFT オフィシャルサイトのトップページ",
+    approach: [
+      "文章は src/data に置き、ページはそれを並べるだけにする",
+      "実績・学習・ポートフォリオは配列を足すと一覧と詳細が増える",
+      "main へのマージで Vercel が本番を更新する",
+    ],
+    highlight: [
+      {
+        title: "追記が止まらない形にした",
+        body: "画面ごとにHTMLを書き直すのではなく、データの1件がページの1件になるようにしています。画像が用意できない項目はプレースホルダで揃えます。",
+      },
+    ],
   },
 ];
 
