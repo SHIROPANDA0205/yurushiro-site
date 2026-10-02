@@ -53,6 +53,16 @@ export type Repository = {
 
 export const repositories: Repository[] = [
   {
+    title: "TODOアプリ",
+    name: "js-todo-app",
+    description:
+      "追加・完了・戻す・削除を、フレームワークなしのJavaScriptで実装したTODOアプリ。",
+    tech: ["JavaScript", "HTML", "CSS"],
+    thumbnail: "/images/repo-js-todo-app.svg",
+    thumbnailAlt:
+      "入力したタスクを未完了と完了に分け、完了・戻す・削除できる流れの図",
+  },
+  {
     title: "画像検索AI",
     name: "image-search-ai",
     description:
