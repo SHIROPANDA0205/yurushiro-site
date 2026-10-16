@@ -332,6 +332,12 @@ export const learnings: Learning[] = [
     completedAt: "2026.09",
     category: "インフラ・クラウド",
   },
+  {
+    title: "はじめてのGitHub Copilot使い方入門【2026年最新版】",
+    provider: "Udemy",
+    completedAt: "2026.10",
+    category: "AI",
+  },
 ];
 
 /** 受講年月がある講座を新しい順に。無いものは後ろへ回す */
