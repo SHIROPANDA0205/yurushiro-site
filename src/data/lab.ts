@@ -333,10 +333,22 @@ export const learnings: Learning[] = [
     category: "インフラ・クラウド",
   },
   {
-    title: "はじめてのGitHub Copilot使い方入門【2026年最新版】",
+    title: "【MS認定】はじめてのGitHub Copilot使い方入門【2026年最新版】",
     provider: "Udemy",
     completedAt: "2026.10",
     category: "AI",
+  },
+  {
+    title: "【30分でわかる】ServiceNow 入門編～ITオペレーションはこれで安心～",
+    provider: "Udemy",
+    completedAt: "2026.10",
+    category: "ローコード",
+  },
+  {
+    title: "【60分でわかる】ServiceNow の使い方 ～実務で使えるノウハウを伝授～",
+    provider: "Udemy",
+    completedAt: "2026.10",
+    category: "ローコード",
   },
 ];
 
